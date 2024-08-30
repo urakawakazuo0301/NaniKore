@@ -1,24 +1,46 @@
-# README
+# アプリケーション名
+コレなんの？
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーション概要
+付属品を、写真で分かりやすく一元管理できるアプリ
 
-Things you may want to cover:
 
-* Ruby version
+# 画面遷移図
+![プレビュー](./korenanno.drawio.svg)
 
-* System dependencies
+# URL
 
-* Configuration
+# テスト用アカウント
 
-* Database creation
+# ER図
+![プレビュー](./korenanno2.drawio.svg)
 
-* Database initialization
+# テーブル設計
 
-* How to run the test suite
+## users テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false |
 
-* Deployment instructions
+### Association
 
-* ...
+ - has_many :items
+
+
+## items テーブル
+
+| Column            | Type       | Options     |
+| ----------        | ---------- | ----------- |
+| name              | string     | null: false |
+| category_id       | integer    | null: false |
+| quantity_id       | integer    | null: false |
+| notes             | text       |             |
+| number            | integer    |             |
+| user              | references | null: false, foreign_key: true |
+
+### Association
+
+ - belongs_to :user
