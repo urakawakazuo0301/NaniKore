@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>コレなんの？</title>
+    <title>ナニこれ？</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chokokutai&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -14,25 +18,35 @@
     <header class="header">
       <div class="nav">
         <div class="nav__left">
-          <%= link_to "コレなんの？", root_path %>
+          <%= link_to image_tag('logo.png'), root_path, class: :nav__logo %>
         </div>
 
         <% if user_signed_in? %>
           <div class="nav__right"> 
-            <%= link_to "#{current_user.nickname}さん", "/users/#{current_user.id}/edit", class: :nav__btn %>
-            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: :nav__logout %>
+            <button class="user_target">
+            <span class="user_text">ユーザー編集</span>
+            <%= link_to "#{current_user.nickname}さん", "/users/#{current_user.id}/edit", class: :nav__user %>
+            </button>
+            <button class="logout_target">
+            <span class="logout_text">ログアウト</span>
+            <%= link_to image_tag('logout.svg', width:"30",height:"30"), destroy_user_session_path, data: { turbo_method: :delete }, class: :nav__logout %>
+            </button>
           </div>
         <% else %>         
           <div class="nav__right">
-            <%= link_to "ログイン", new_user_session_path, class: :nav__btn %>
-            <%= link_to "新規登録", new_user_registration_path, class: :nav__btn %>
+            <button class="sign_in_target">
+            <span class="sign_in_text">ログイン</span>
+            <%= link_to image_tag('sign_in.svg', width:"30",height:"30"), new_user_session_path, class: :nav__btn %>
+            </button>
+            <button class="sign_up_target">
+            <span class="sign_up_text">新規登録</span>
+            <%= link_to image_tag('sign_up.svg', width:"30",height:"30"), new_user_registration_path, class: :nav__btn %>
+            </button>
           </div>
         <% end %>
       </div>
     </header>
-    <%= yield %>
-    <footer class="footer">
-      <p class="copyright">Copyright © PROTO SPACE All rights reserved.</p>
-    </footer>
+  <%= yield %>
+  <footer></footer>
   </body>
 </html>
