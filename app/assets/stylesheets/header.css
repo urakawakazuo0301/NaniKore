@@ -1,10 +1,12 @@
 /* ヘッダー */
 
 .header {
-  background-color: tomato;
+  background-color: #fff;
   display: flex;
   align-items: center;
-  height: 80px;
+  height: 70px;
+  position: sticky;
+  top: 0;
 }
 
 .nav {
@@ -17,42 +19,194 @@
   margin-left: 20px;
 }
 
-a {
-  text-decoration: none;
+.nav__logo img {
+  width: 200px;
+  height: auto;
 }
 
 .nav__right {
   margin: 0 20px 0 auto;
+  display: flex;
+}
+
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .nav__btn{
   display: inline-block;
   padding: 0.4em 1.6em;
-  font-size: 0.8em;
-  color: black;
+  font-size: 0.5em;
   text-decoration: none;
   user-select: none;
-  border: 1px #eeeeee solid;
   border-radius: 3px;
   transition: 0.4s ease;
+  filter: invert(39%) sepia(26%) saturate(464%) hue-rotate(164deg) brightness(93%) contrast(90%);
 }
+
 .nav__btn:hover{
+  filter: brightness(0.75);
+  transform: scale(1.3);
+}
+
+/* カーソルを重ねる要素 */
+.sign_in_target {
+  position: relative;
+  cursor: pointer;
+}
+
+/* ツールチップのテキスト */
+.sign_in_text {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -30px;
+  display: inline-block;
+  padding: 5px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  background: #a9a9a9;
   color: #fff;
-  background: #87CEFA;
+  border-radius: 3px;
+  transition: 0.3s ease-in;
+}
+
+/* ホバー時にツールチップの非表示を解除 */
+.sign_in_target:hover .sign_in_text {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* カーソルを重ねる要素 */
+.sign_up_target {
+  position: relative;
+  cursor: pointer;
+}
+
+/* ツールチップのテキスト */
+.sign_up_text {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -30px;
+  display: inline-block;
+  padding: 5px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  background: #a9a9a9;
+  color: #fff;
+  border-radius: 3px;
+  transition: 0.3s ease-in;
+}
+
+/* ホバー時にツールチップの非表示を解除 */
+.sign_up_target:hover .sign_up_text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav__user {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  padding: 0.4em 1.6em;
+  font-size: 1.0em;
+  text-decoration: none;
+  user-select: none;
+  border-radius: 3px;
+  transition: 0.4s ease;
+  filter: invert(39%) sepia(26%) saturate(464%) hue-rotate(164deg) brightness(93%) contrast(90%);
+}
+
+.nav__user:hover{
+  filter: brightness(0.75);
+  transform: scale(1.3);
+}
+
+/* カーソルを重ねる要素 */
+.user_target {
+  position: relative;
+  cursor: pointer;
+}
+
+/* ツールチップのテキスト */
+.user_text {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -30px;
+  display: inline-block;
+  padding: 5px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  background: #a9a9a9;
+  color: #fff;
+  border-radius: 3px;
+  transition: 0.3s ease-in;
+}
+
+/* ホバー時にツールチップの非表示を解除 */
+.user_target:hover .user_text {
+  opacity: 1;
+  visibility: visible;
 }
 
 .nav__logout{
   display: inline-block;
   padding: 0.4em 1.6em;
-  font-size: 0.8em;
-  color: black;
+  font-size: 0.5em;
   text-decoration: none;
   user-select: none;
-  border: 1px #eeeeee solid;
   border-radius: 3px;
   transition: 0.4s ease;
+  filter: invert(39%) sepia(26%) saturate(464%) hue-rotate(164deg) brightness(93%) contrast(90%);
 }
+
 .nav__logout:hover{
+  filter: brightness(0.75);
+  transform: scale(1.3);
+}
+
+/* カーソルを重ねる要素 */
+.logout_target {
+  position: relative;
+  cursor: pointer;
+}
+
+/* ツールチップのテキスト */
+.logout_text {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -30px;
+  display: inline-block;
+  padding: 5px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  background: #a9a9a9;
   color: #fff;
-  background: #87CEFA;
+  border-radius: 3px;
+  transition: 0.3s ease-in;
+}
+
+/* ホバー時にツールチップの非表示を解除 */
+.logout_target:hover .logout_text {
+  opacity: 1;
+  visibility: visible;
 }

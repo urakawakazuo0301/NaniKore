@@ -1,33 +1,33 @@
-<div class='account-page' id='account-page'>
-  <div class='account-page__inner clearfix'>
-    <div class='account-page__inner--left account-page__header'>
-      <h2>Edit Account</h2>
-      <h5>アカウントの編集</h5>
-      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn'%>
-      <%= link_to "戻る", :back, class: 'btn'%>
-    </div>
-    <div class='account-page__inner--right user-form'>
-      <%= form_with model: current_user, local: true do |f|%>
-        <div class='field'>
-          <div class='field-label'>
-            <%= f.label :nickname%>
-          </div>
-          <div class='field-input'>
-            <%= f.text_field :nickname, autofocus: true%>
-          </div>
+<div class="contents">
+  <h2>ユーザー編集</h2>
+   <div class="shared_links">
+    <button class="return_target">
+      <span class="return_text">戻る</span>
+      <%= link_to image_tag('return.svg', width:"30",height:"30"), :back, class: :return_btn %>
+    </button>
+
+   </div>
+   <div class='user-form'>
+    <%= form_with model: current_user, local: true do |f|%> 
+      <div class='field'>
+        <div class='field-label'>
+          <%= f.label :ニックネーム%>
         </div>
-        <div class='field'>
-          <div class='field-label'>
-            <%= f.label :email%>
-          </div>
-          <div class='field-input'>
-            <%= f.email_field :email%>
-          </div>
+        <div class='field-input'>
+          <%= f.text_field :nickname, autofocus: true%>
         </div>
-        <div class='actions'>
-          <%= f.submit "Update", class: 'btn'%>
+      </div>
+      <div class='field'>
+        <div class='field-label'>
+          <%= f.label :メールアドレス%>
         </div>
-      <% end %>
-    </div>
-  </div>
+        <div class='field-input'>
+          <%= f.email_field :email%>
+        </div>
+      </div>
+      <div class='actions'>
+        <%= f.submit "更新", class: 'btn'%>
+      </div>
+    <% end %>
+   </div>
 </div>
