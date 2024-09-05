@@ -7,7 +7,7 @@
 
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :画像%>
+        <%= f.label :画像 %>
       </div>
       <div class='field-input'>
         <%= f.file_field :image %>
@@ -23,10 +23,26 @@
     </div>
     <div class='field'>
       <div class='field-label'>
+        <%= f.label :カテゴリー%>
+      </div>
+      <div class='field-input'>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box"}) %>
+      </div>
+    </div>
+     <div class='field'>
+      <div class='field-label'>
+        <%= f.label :数量%>
+      </div>
+      <div class='field-input'>
+        <%= f.collection_select(:quantity_id, Quantity.all, :id, :name, {}, {class:"select-box"}) %>
+      </div>
+    </div>
+    <div class='field'>
+      <div class='field-label'>
         <%= f.label :備考欄%>
       </div>
       <div class='field-input'>
-        <%= f.text_area :notes, placeholder: "在庫品の補足を記入してください", size: "90x5"%>
+        <%= f.text_area :notes, placeholder: "補足説明", size: "90x5"%>
       </div>
     </div>
     <div class='field'>

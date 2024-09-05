@@ -58,6 +58,14 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
+.select-box {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 25px;
+  width: 250px;
+}
+
 textarea {
   width: 100%;
   padding: 10px;
