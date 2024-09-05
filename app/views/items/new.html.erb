@@ -1,7 +1,7 @@
 <div class="contents">
 <h2>付属品の登録</h2> 
   <div class='user-form'>
-    <%= form_with model: @item, local: true do |f|%>
+    <%= form_with model: @item, id: 'new_post', local: true do |f|%>
     
     <%= render 'shared/error_messages', model: f.object %>
 
@@ -9,8 +9,9 @@
       <div class='field-label'>
         <%= f.label :画像 %>
       </div>
+      <div id ="previews"></div>
       <div class='field-input'>
-        <%= f.file_field :image %>
+        <%= f.file_field :images, name: 'item[images][]', data: {index: 0}, id:"item-image" %>
       </div>
     </div>
     <div class='field'>

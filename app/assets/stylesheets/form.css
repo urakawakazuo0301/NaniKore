@@ -47,6 +47,18 @@ h2 {
   color: #555;
 }
 
+.preview-size {
+  height: 150px;
+  width: 150px;
+}
+
+.image-delete-button {
+  width: 100px;
+  text-align: center;
+  border: solid 1px;
+  cursor: pointer;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"] {
