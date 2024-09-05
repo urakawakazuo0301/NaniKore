@@ -1,0 +1,46 @@
+<div class="contents">
+<h2>付属品の登録</h2> 
+  <div class='user-form'>
+    <%= form_with model: @item, local: true do |f|%>
+    
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :画像%>
+      </div>
+      <div class='field-input'>
+        <%= f.file_field :image %>
+      </div>
+    </div>
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :名前%>
+      </div>
+      <div class='field-input'>
+        <%= f.text_field :name%>
+      </div>
+    </div>
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :備考欄%>
+      </div>
+      <div class='field-input'>
+        <%= f.text_area :notes, placeholder: "在庫品の補足を記入してください", size: "90x5"%>
+      </div>
+    </div>
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :カラー%>
+      </div>
+      <div class='field-input'>
+        <%= f.color_field :カラー%>
+      </div>
+    </div>
+    <div class='actions'>
+      <%= f.submit "登録", class: 'btn'%>
+    </div>
+    <% end %> 
+  </div>
+ </div>
+</div>

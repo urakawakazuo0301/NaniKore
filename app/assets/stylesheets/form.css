@@ -58,6 +58,16 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+}
+
 /* ボタンのスタイル */
 .actions {
   text-align: center;
