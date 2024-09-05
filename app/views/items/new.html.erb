@@ -1,0 +1,63 @@
+<div class="contents">
+<h2>付属品の登録</h2> 
+  <div class='user-form'>
+    <%= form_with model: @item, id: 'new_post', local: true do |f|%>
+    
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :画像 %>
+      </div>
+      <div id ="previews"></div>
+      <div class='field-input'>
+        <%= f.file_field :images, name: 'item[images][]', data: {index: 0}, id:"item-image" %>
+      </div>
+    </div>
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :名前%>
+      </div>
+      <div class='field-input'>
+        <%= f.text_field :name%>
+      </div>
+    </div>
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :カテゴリー%>
+      </div>
+      <div class='field-input'>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box"}) %>
+      </div>
+    </div>
+     <div class='field'>
+      <div class='field-label'>
+        <%= f.label :数量%>
+      </div>
+      <div class='field-input'>
+        <%= f.collection_select(:quantity_id, Quantity.all, :id, :name, {}, {class:"select-box"}) %>
+      </div>
+    </div>
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :備考欄%>
+      </div>
+      <div class='field-input'>
+        <%= f.text_area :notes, placeholder: "補足説明", size: "90x5"%>
+      </div>
+    </div>
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :カラー%>
+      </div>
+      <div class='field-input'>
+        <%= f.color_field :カラー%>
+      </div>
+    </div>
+    <div class='actions'>
+      <%= f.submit "登録", class: 'btn'%>
+    </div>
+    <% end %> 
+  </div>
+ </div>
+</div>

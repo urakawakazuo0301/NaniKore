@@ -47,6 +47,18 @@ h2 {
   color: #555;
 }
 
+.preview-size {
+  height: 150px;
+  width: 150px;
+}
+
+.image-delete-button {
+  width: 100px;
+  text-align: center;
+  border: solid 1px;
+  cursor: pointer;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -56,6 +68,24 @@ input[type="password"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.select-box {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  height: 25px;
+  width: 250px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
 }
 
 /* ボタンのスタイル */
