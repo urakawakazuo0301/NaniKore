@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="images"
 export default class extends Controller {
    /* 静的プロパティを定義（data-{controller}-target で指定したターゲット名） */
-   static targets = ["select", "preview", "image_box", "error"]
+   static targets = ["select", "preview", "image_box", "drop", "error"]
 
    imageSizeOver(file){ // アップロードする画像ファイルサイズの上限（2MB）を超えたかどうか判定
       const fileSize = (file.size)/1000 // ファイルサイズ(KB)
@@ -13,6 +13,45 @@ export default class extends Controller {
         return false
       }
    }
+
+   /* 画像ドラッグ時の処理（ドラッグ&ドロップ） */
+    dragover(e) {
+      e.preventDefault()
+      // dragover したときに drop_area の色を変える
+      this.dropTarget.classList.remove("bg-gray-50")
+      this.dropTarget.classList.add("bg-gray-200")
+    }
+
+    dragleave(e) {
+      e.preventDefault()
+      // dragleave したときに drop_area の色を元に戻す
+      this.dropTarget.classList.remove("bg-gray-200")
+      this.dropTarget.classList.add("bg-gray-50")
+    }
+
+    dropImages(e){
+      e.preventDefault()
+      // drop した後に drop_area の色を元に戻す
+      this.dropTarget.classList.remove("bg-gray-200")
+      this.dropTarget.classList.add("bg-gray-50")
+
+      this.errorTarget.textContent = ""
+      const uploadedFilesCount = this.previewTarget.querySelectorAll(".image-box").length
+      const files = e.dataTransfer.files // ドラッグ&ドロップした画像ファイルを読み込む
+      if(files.length + uploadedFilesCount > 3){
+        this.errorTarget.textContent = "画像アップロード上限は最大3枚です。"
+      }else{
+        for(const file of files){
+          if(this.imageSizeOver(file)){
+            this.errorTarget.textContent = "ファイルサイズの上限(1枚あたり2MB)を超えている画像はアップロードできません。"
+          }else{
+            this.uploadImage(file) // ファイルのアップロード
+          }
+        }
+      }
+      this.selectTarget.value = "" // 選択ファイルのリセット
+    }
+
 
    /* 画像選択時の処理 */
    selectImages(){
