@@ -31,3 +31,5 @@
 /config/master.key
 
 .Ds_Store
+/app/assets/builds/*
+!/app/assets/builds/.keep
