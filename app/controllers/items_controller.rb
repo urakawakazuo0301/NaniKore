@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :set_item, only: [:update]
 
   def index
   end
@@ -17,11 +18,38 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+  end
+
+
+  def upload_image
+    @image_blob = create_blob(params[:image])
+    render json: @image_blob
+  end
+
 
   private
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def item_params
-    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color, {images: []}).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color).merge(user_id: current_user.id, images: uploaded_images)
+  end
+
+  # アップロード済み画像の検索
+  def uploaded_images
+    params[:item][:images].drop(1).map{|id| ActiveStorage::Blob.find(id)} if params[:item][:images]
+  end
+
+  # blobデータの作成
+  def create_blob(file)
+    ActiveStorage::Blob.create_and_upload!(
+      io: file.open,
+      filename: file.original_filename,
+      content_type: file.content_type
+    )
   end
 
 end
