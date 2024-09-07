@@ -77,6 +77,36 @@ textarea {
   resize: none;
 }
 
+/* ラジオボタンのスタイル */
+.radio-item {
+  display: inline-block;
+}
+
+.color-1 label {
+  color: red;
+}
+
+.color-2 label {
+  color: blue; 
+}
+
+.color-3 label {
+  color: green; 
+}
+
+.color-4 label {
+  color: orange; 
+}
+
+.color-5 label {
+  color: purple; 
+}
+
+.color-6 label {
+  color: black; 
+}
+
+
 /* ボタンのスタイル */
 .actions {
   text-align: center;

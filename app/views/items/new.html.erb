@@ -7,7 +7,7 @@
 
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :画像 %>
+        <%= f.label :画像（スマホの場合はカメラが起動） %>
       </div>
       <div class='field-input'>
         <%= f.file_field :images, multiple: true, accept: "image/*", capture: 'camera', data: { images_target: "select", action: "change->images#selectImages" } %>
@@ -72,7 +72,12 @@
         <%= f.label :カラー（任意）%>
       </div>
       <div class='field-input'>
-        <%= f.collection_radio_buttons :color_id, Color.all, :id, :name %>
+        <%= f.collection_radio_buttons :color_id, Color.all, :id, :name do |b| %>
+          <div class="radio-item color-<%= b.object.id %>">
+            <%= b.radio_button %>
+            <%= b.label %>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class='actions'>
