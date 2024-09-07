@@ -37,7 +37,7 @@
 | category_id       | integer    | null: false |
 | quantity_id       | integer    | null: false |
 | notes             | text       |             |
-| color             | string     |             |
+| color_id          | integer    |             |
 | user              | references | null: false, foreign_key: true |
 
 ### Association

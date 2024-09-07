@@ -5,10 +5,10 @@ export default class extends Controller {
    /* 静的プロパティを定義（data-{controller}-target で指定したターゲット名） */
    static targets = ["select", "preview", "image_box", "drop", "error"]
 
-   imageSizeOver(file){ // アップロードする画像ファイルサイズの上限（2MB）を超えたかどうか判定
+   imageSizeOver(file){ // アップロードする画像ファイルサイズの上限（5MB）を超えたかどうか判定
       const fileSize = (file.size)/1000 // ファイルサイズ(KB)
-      if(fileSize > 2000){
-        return true // ファイルサイズが2MBを超えた場合はtrueを返す
+      if(fileSize > 5000){
+        return true // ファイルサイズが5MBを超えた場合はtrueを返す
       }else{
         return false
       }
@@ -63,7 +63,7 @@ export default class extends Controller {
     }else{
       for(const file of files){
         if(this.imageSizeOver(file)){
-          this.errorTarget.textContent = "ファイルサイズの上限(1枚あたり2MB)を超えている画像はアップロードできません。"
+          this.errorTarget.textContent = "ファイルサイズの上限(1枚あたり5MB)を超えている画像はアップロードできません。"
         }else{
           this.uploadImage(file) // ファイルのアップロード
         }

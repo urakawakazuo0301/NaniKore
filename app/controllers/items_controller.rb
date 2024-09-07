@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color).merge(user_id: current_user.id, images: uploaded_images)
+    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, {images: []}).merge(user_id: current_user.id, images: uploaded_images)
   end
 
   # アップロード済み画像の検索

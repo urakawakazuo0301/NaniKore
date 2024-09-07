@@ -10,7 +10,7 @@
         <%= f.label :画像 %>
       </div>
       <div class='field-input'>
-        <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png", data: { images_target: "select", action: "change->images#selectImages" } %>
+        <%= f.file_field :images, multiple: true, accept: "image/*", data: { images_target: "select", action: "change->images#selectImages" } %>
       </div>
       <p data-images-target="error" class="text-red-600"></p>
     </div>
@@ -61,7 +61,7 @@
     </div>
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :備考欄%>
+        <%= f.label :備考欄（任意）%>
       </div>
       <div class='field-input'>
         <%= f.text_area :notes, placeholder: "補足説明", size: "90x5"%>
@@ -69,10 +69,10 @@
     </div>
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :カラー%>
+        <%= f.label :カラー（任意）%>
       </div>
       <div class='field-input'>
-        <%= f.color_field :color%>
+        <%= f.collection_radio_buttons :color_id, Color.all, :id, :name %>
       </div>
     </div>
     <div class='actions'>
