@@ -1,7 +1,7 @@
 <div class="contents">
 <h2>付属品の登録</h2> 
   <div class='user-form'>
-    <%= form_with model: @item, data: { controller: "images"}, local: true do |f|%>
+    <%= form_with model: @item, data: { controller: "images"}, html: { multipart: true }, local: true do |f|%>
     
     <%= render 'shared/error_messages', model: f.object %>
 
@@ -10,7 +10,7 @@
         <%= f.label :画像 %>
       </div>
       <div class='field-input'>
-        <%= f.file_field :images, multiple: true, accept: "image/*", data: { images_target: "select", action: "change->images#selectImages" } %>
+        <%= f.file_field :images, multiple: true, accept: "image/*", capture: 'camera', data: { images_target: "select", action: "change->images#selectImages" } %>
       </div>
       <p data-images-target="error" class="text-red-600"></p>
     </div>
