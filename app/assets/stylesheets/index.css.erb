@@ -1,4 +1,4 @@
-.items_search_main {
+.main {
   background-image: url("<%= asset_path('background.png') %>");
   height: 800px;
   background-size: contain;
@@ -10,21 +10,25 @@
 
 
 .create_btn {
-  width: 600px;
-  background: #4682b4;
-  text-align: center;
-  bottom: 70px;
+  width: 120px;
+  height: 120px;
+  background: #708090;
+  bottom: 32px;
+  right: 32px;
   border-radius: 4%;
   position: fixed;
-  padding: 12px 15px 15px 10px;
-  cursor: pointer;
+  padding: 5px 15px;
+  display: flex;
+  justify-content: center; /* Centers text horizontally */
+  align-items: center;     /* Centers text vertically */
+  text-decoration: none;
 }
 
 .create_btn_text  {
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .create_btn:hover {
-  background-color: #00bfff;
+  background-color: #36454F;
 }

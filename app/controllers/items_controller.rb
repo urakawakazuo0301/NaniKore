@@ -27,6 +27,9 @@ class ItemsController < ApplicationController
     render json: @image_blob
   end
 
+  def search
+    @items = Item.search(search_params)
+  end
 
   private
 
@@ -36,6 +39,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, {images: []}).merge(user_id: current_user.id, images: uploaded_images)
+  end
+
+  def search_params
+    params.permit(:name, :category_id, :quantity_id, :color_id, :notes)
   end
 
   # アップロード済み画像の検索
