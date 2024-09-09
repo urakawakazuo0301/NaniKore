@@ -2,8 +2,8 @@
 
 <div class="back-button-container">
   <button class="return_target">
-    <span class="return_text">検索一覧へ戻る</span>
-    <%= link_to image_tag('return.svg', width:"30",height:"30"), request.referer || items_path, class: :return_btn %>
+    <span class="return_text">検索結果へ戻る</span>
+    <%= link_to image_tag('return.svg', width:"30",height:"30"), search_items_path(session[:search_filters]), class: 'return_btn'  %>
   </button>
 </div>
 

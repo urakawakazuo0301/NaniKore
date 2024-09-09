@@ -25,6 +25,15 @@ class ItemsController < ApplicationController
   end
 
   def update
+    if @item.update(item_params)
+      if params[:item][:images].present?
+        new_images = params[:item][:images].select { |img| img.is_a?(ActionDispatch::Http::UploadedFile) }
+        @item.images.attach(new_images) unless new_images.empty?
+      end
+      redirect_to item_path(@item)
+    else
+      render 'edit', status: :unprocessable_entity
+    end
   end
 
 
@@ -35,6 +44,7 @@ class ItemsController < ApplicationController
 
   def search
     @items = Item.search(search_params)
+    session[:search_filters] = params.slice(:name, :category_id, :quantity_id, :color_id, :notes)
   end
 
   private
