@@ -123,7 +123,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #00bfff;
+  background-color: #003366;
 }
 
 /* エラーメッセージのスタイル */

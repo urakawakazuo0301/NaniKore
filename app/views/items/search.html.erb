@@ -2,7 +2,8 @@
     <h2>検索結果</h2>
     <div class="items-list">
       <% @items.each do |item| %>
-        <div class="item-box">
+
+        <%= link_to item_path(item.id), class: "item-box" do %>
           <% if item.images.attached? %>
             <div class="image-gallery">
               <% item.images.each do |image| %>
@@ -16,7 +17,7 @@
             <p>数量: <%= item.quantity.name %></p>
             <p>備考欄: <%= item.notes %></p>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   <% else %>
