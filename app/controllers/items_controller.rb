@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -46,6 +46,12 @@ class ItemsController < ApplicationController
     @items = Item.search(search_params)
     session[:search_filters] = params.slice(:name, :category_id, :quantity_id, :color_id, :notes)
   end
+
+  def destroy
+    @item.destroy
+    redirect_to search_items_path(session[:search_filters])
+  end
+  
 
   private
 
