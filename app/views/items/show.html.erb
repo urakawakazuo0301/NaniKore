@@ -1,4 +1,4 @@
-<h2>「<%= @item.name %>」の詳細</h2>
+<h2> <%= @item.name %> の詳細</h2>
 
 <div class="back-button-container">
   <button class="return_target">
@@ -26,4 +26,10 @@
       <p><strong>更新日:</strong> <%= @item.updated_at.strftime("%Y年%m月%d日") %></p>
     </div>
   </div>
+</div>
+
+<div class="action-button-container">
+  <%= link_to '編集', edit_item_path(@item), class: 'btn btn-edit' %>
+  <%= link_to '削除', item_path(@item), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-delete' %>
+  <%= link_to '使用済み', class: 'btn btn-used' %>
 </div>

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   root 'items#index'
   resources :users, only: [:edit, :update]
-  resources :items, only: [:new, :create, :show, :update] do
+  resources :items, only: [:new, :create, :show, :edit, :update] do
     collection do
       get 'search'
     end

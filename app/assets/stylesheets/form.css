@@ -78,6 +78,7 @@ textarea {
 /* ラジオボタンのスタイル */
 .radio-item {
   display: inline-block;
+  margin-right: 10px;
 }
 
 .color-1 label {
