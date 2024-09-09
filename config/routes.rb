@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   
   root 'items#index'
   resources :users, only: [:edit, :update]
-  resources :items, only: [:new, :create, :update]
+  resources :items do
+    collection do
+      get 'search'
+    end
+  end
   
   post "items/upload_image", to: "items#upload_image"
 

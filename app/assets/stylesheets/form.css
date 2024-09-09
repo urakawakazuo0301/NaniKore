@@ -1,7 +1,4 @@
 
-.contents {
-  margin-top: 100px;
-}
 
 /* フォームコンテナ */
 form {
@@ -26,6 +23,7 @@ a {
 /* フォームタイトル */
 h2 {
   font-size: 24px;
+  margin-top: 80px;
   margin-bottom: 20px;
   text-align: center;
   -webkit-text-stroke: 1px #FFF;
@@ -80,6 +78,7 @@ textarea {
 /* ラジオボタンのスタイル */
 .radio-item {
   display: inline-block;
+  margin-right: 10px;
 }
 
 .color-1 label {
@@ -125,7 +124,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #00bfff;
+  background-color: #003366;
 }
 
 /* エラーメッセージのスタイル */

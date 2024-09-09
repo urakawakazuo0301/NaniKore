@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_item, only: [:update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -18,7 +18,22 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def edit
+  end
+
   def update
+    if @item.update(item_params)
+      if params[:item][:images].present?
+        new_images = params[:item][:images].select { |img| img.is_a?(ActionDispatch::Http::UploadedFile) }
+        @item.images.attach(new_images) unless new_images.empty?
+      end
+      redirect_to item_path(@item)
+    else
+      render 'edit', status: :unprocessable_entity
+    end
   end
 
 
@@ -27,6 +42,16 @@ class ItemsController < ApplicationController
     render json: @image_blob
   end
 
+  def search
+    @items = Item.search(search_params)
+    session[:search_filters] = params.slice(:name, :category_id, :quantity_id, :color_id, :notes)
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to search_items_path(session[:search_filters])
+  end
+  
 
   private
 
@@ -36,6 +61,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, {images: []}).merge(user_id: current_user.id, images: uploaded_images)
+  end
+
+  def search_params
+    params.permit(:name, :category_id, :quantity_id, :color_id, :notes)
   end
 
   # アップロード済み画像の検索

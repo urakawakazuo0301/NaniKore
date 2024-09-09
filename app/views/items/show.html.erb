@@ -1,0 +1,36 @@
+<h2> <%= @item.name %> の詳細</h2>
+
+<div class="back-button-container">
+  <button class="return_target">
+    <span class="return_text">検索結果へ戻る</span>
+    <%= link_to image_tag('return.svg', width:"30",height:"30"), search_items_path(session[:search_filters]), class: 'return_btn'  %>
+  </button>
+</div>
+
+<div class="item-details-container">
+  <div class="item-boxes">
+    <div class="item-image-gallery">
+      <% if @item.images.attached? %>
+        <% @item.images.each do |image| %>
+          <%= image_tag image, width: "200" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="item-info">
+      <p><strong>カテゴリー:</strong> <%= @item.category.name %></p>
+      <p><strong>数量:</strong> <%= @item.quantity.name %></p>
+      <p><strong>カラー:</strong> <%= @item.color&.name || '' %></p>
+      <p><strong>備考欄:</strong> <%= @item.notes %></p>
+      <p><strong>登録日:</strong> <%= @item.created_at.strftime("%Y年%m月%d日") %></p>
+      <p><strong>更新日:</strong> <%= @item.updated_at.strftime("%Y年%m月%d日") %></p>
+    </div>
+  </div>
+</div>
+
+<div class="action-button-container">
+  <%= link_to '編集', edit_item_path(@item), class: 'btn btn-edit' %>
+  <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete }, class: 'btn btn-delete', onclick: "return confirm('本当に削除しますか？');" %>
+  <%= link_to '使用済み', search_items_path(session[:search_filters]), class: 'btn btn-used', data: { item_id: @item.id } %>
+
+</div>

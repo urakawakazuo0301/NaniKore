@@ -1,5 +1,5 @@
 <div class="contents">
-<h2>付属品の登録</h2> 
+<h2>アイテム登録</h2> 
   <div class='user-form'>
     <%= form_with model: @item, data: { controller: "images"}, html: { multipart: true }, local: true do |f|%>
     
@@ -61,14 +61,6 @@
     </div>
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :備考欄（任意）%>
-      </div>
-      <div class='field-input'>
-        <%= f.text_area :notes, placeholder: "補足説明", size: "90x5"%>
-      </div>
-    </div>
-    <div class='field'>
-      <div class='field-label'>
         <%= f.label :カラー（任意）%>
       </div>
       <div class='field-input'>
@@ -80,8 +72,16 @@
         <% end %>
       </div>
     </div>
+    <div class='field'>
+      <div class='field-label'>
+        <%= f.label :備考欄（任意）%>
+      </div>
+      <div class='field-input'>
+        <%= f.text_area :notes, placeholder: "補足説明", size: "90x5"%>
+      </div>
+    </div>
     <div class='actions'>
-      <%= f.submit "登録", class: 'btn'%>
+      <%= f.submit "登録", class: "btn btn-submit" %>
     </div>
     <% end %> 
   </div>
