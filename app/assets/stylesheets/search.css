@@ -71,3 +71,95 @@ p {
   color: white;
   background-color: #50c878;
 }
+
+
+@media (max-width: 600px) {
+
+  .items-list {
+    padding: 10px;
+  }
+
+  .search-form {
+    position: static;
+  }
+
+  .item-box {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .image-gallery {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .image-gallery img {
+    width: 100%;
+    height: auto;
+  }
+
+  .item-details {
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .item-status {
+    width: 70px;
+    padding: 4px;
+  }
+}
+
+
+/* タブレット用スタイル */
+@media (min-width: 601px) and (max-width: 1024px) {
+.items-list {
+  padding: 20px;
+}
+
+.search-form {
+  position: static;
+}
+
+.item-box {
+  width: 80%;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.image-gallery {
+  flex-wrap: wrap;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.image-gallery img {
+  width: 80%;
+  height: auto;
+}
+
+.item-details {
+  width: 100%;
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+.item-status {
+  width: 80px;
+  padding: 6px;
+}
+}

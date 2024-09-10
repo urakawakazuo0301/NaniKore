@@ -5,8 +5,7 @@
   </div>
 
   <div class='user-form'>
-    <%= form_with model: resource, as: resource_name, url: session_path(resource_name), local: true do |f|%>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_with model: @user, url: session_path(resource_name), local: true do |f|%>
 
     <div class='field'>
       <div class='field-label'>

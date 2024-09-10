@@ -16,7 +16,7 @@
   background: #708090;
   bottom: 32px;
   right: 32px;
-  border-radius: 4%;
+  border-radius: 50%;
   position: fixed;
   padding: 5px 15px;
   display: flex;
@@ -32,4 +32,63 @@
 
 .create_btn:hover {
   background-color: #36454F;
+}
+
+
+/* スマホ用スタイル */
+@media (max-width: 600px) {
+
+  .create_btn {
+    width: 80px;
+    height: 80px;
+    background: #708090;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    position: fixed;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .create_btn_text {
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .create_btn:hover {
+    background-color: #36454F;
+  }
+}
+
+
+/* タブレット用スタイル */
+@media (min-width: 601px) and (max-width: 768px) {
+
+  .create_btn {
+    width: 100px;
+    height: 100px;
+    background: #708090;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    position: fixed;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .create_btn_text {
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .create_btn:hover {
+    background-color: #36454F;
+  }
 }

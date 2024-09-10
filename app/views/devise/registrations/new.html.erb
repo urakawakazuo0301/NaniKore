@@ -1,8 +1,8 @@
 <div class="contents">
 <h2>新規登録</h2> 
   <div class='user-form'>
-    <%= form_with model: resource, as: resource_name, url: registration_path(resource_name), local: true do |f|%>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_with model: @user, url: registration_path(resource_name), local: true do |f|%>
+     <%= render 'shared/error_messages', model: f.object %>
 
     <div class='field'>
       <div class='field-label'>

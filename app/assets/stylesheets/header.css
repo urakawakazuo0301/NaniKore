@@ -215,45 +215,92 @@ button {
 
 /* スマホ用スタイル */
 @media (max-width: 600px) {
-  .nav {
-    flex-direction: column;
-    align-items: center;
+  .header {
+    height: auto;
+    padding: 10px;
   }
-  
-  .nav__left, .nav__right {
+
+  .nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
+  }
+
+  .nav__left, .nav__right {
+    width: auto;
     text-align: center;
   }
-  
-  .nav__logo {
-    margin-bottom: 10px;
+
+  .nav__logo img {
+    width: 150px;
   }
-  
+
+  .nav__right {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+  }
+
   .nav__right button {
-    display: block;
-    width: 100%;
-    margin: 5px 0;
+    display: inline-block;
+    width: auto;
+    margin: 0;
+  }
+
+  .sign_in_text, .sign_up_text, .user_text, .logout_text {
+    font-size: 0.7rem;
+    bottom: -25px;
+  }
+
+  .nav__btn, .nav__user, .nav__logout {
+    font-size: 0.8em;
+    padding: 0.3em 1.2em;
   }
 }
 
 /* タブレット用スタイル */
 @media (min-width: 601px) and (max-width: 1024px) {
+  .header {
+    height: 80px;
+    padding: 10px 20px;
+  }
+
   .nav {
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
+    width: 100%;
   }
-  
+
   .nav__left, .nav__right {
     width: auto;
-    text-align: left;
+    text-align: center;
   }
-  
-  .nav__logo {
-    margin-right: 20px;
+
+  .nav__logo img {
+    width: 180px;
   }
-  
+
+  .nav__right {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+  }
+
   .nav__right button {
     display: inline-block;
-    margin: 0 10px;
+    width: auto;
+    margin: 0;
+  }
+
+  .sign_in_text, .sign_up_text, .user_text, .logout_text {
+    font-size: 0.8rem;
+    bottom: -30px;
+  }
+
+  .nav__btn, .nav__user, .nav__logout {
+    font-size: 0.9em;
+    padding: 0.4em 1.4em;
   }
 }

@@ -127,28 +127,6 @@ input[type="submit"]:hover {
   background-color: #003366;
 }
 
-/* エラーメッセージのスタイル */
-#error_explanation {
-  border: 1px solid #ebccd1;
-  color: #a94442;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-}
-
-#error_explanation h2 {
-  margin: 0 0 10px;
-}
-
-#error_explanation ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-#error_explanation li {
-  margin-left: 0;
-}
-
 /* 戻るボタンの要素 */
 .return_btn {
   display: inline-block;
@@ -191,4 +169,169 @@ input[type="submit"]:hover {
 .return_target:hover .return_text {
   opacity: 1;
   visibility: visible;
+}
+
+
+/* スマホ用スタイル */
+@media (max-width: 600px) {
+
+  body {
+    overflow-x: hidden;
+  }
+  
+  .main {
+    padding: 0 10px;
+  }
+
+  form {
+    padding: 10px;
+    padding-bottom: 20px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: none;
+    overflow-y: auto;
+    max-height: 80vh; 
+  }
+
+  .shared_links {
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+
+  .field {
+    margin-bottom: 10px;
+  }
+
+  .field-label {
+    font-size: 12px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    height: 40px;
+    font-size: 12px;
+  }
+
+  textarea {
+    height: 80px;
+    font-size: 12px;
+  }
+
+  .select-box {
+    height: 40px;
+    width: 100%;
+  }
+
+  .radio-item {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .actions {
+    text-align: center;
+  }
+
+  input[type="submit"] {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .return_btn {
+    padding: 0.4em 1.0em;
+    font-size: 0.9em;
+  }
+
+  .return_text {
+    font-size: 0.7rem;
+    bottom: -25px;
+  }
+}
+
+
+/* タブレット用スタイル */
+@media (min-width: 601px) and (max-width: 1024px) {
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  .main {
+    padding: 0 20px;
+  }
+
+  form {
+    padding: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+
+  .shared_links {
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+
+  .field {
+    margin-bottom: 15px;
+  }
+
+  .field-label {
+    font-size: 14px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    height: 45px;
+    font-size: 14px;
+  }
+
+  textarea {
+    height: 100px;
+    font-size: 14px;
+  }
+
+  .select-box {
+    height: 45px;
+    width: 100%;
+  }
+
+  .radio-item {
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+  .actions {
+    text-align: center;
+  }
+
+  input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .return_btn {
+    padding: 0.5em 1.2em;
+    font-size: 1.0em;
+  }
+
+  .return_text {
+    font-size: 0.8rem;
+    bottom: -30px;
+  }
+
 }

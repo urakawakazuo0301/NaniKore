@@ -160,14 +160,81 @@
 }
 
 
-/* 画面幅が小さいデバイス向け */
+/* スマホ (最大幅600px) */
 @media (max-width: 600px) {
-  .btn {
-    font-size: 14px;
-    padding: 8px 16px;
+  .item-details-container {
+    margin: 10px;
   }
-  
+
+  .item-boxes {
+    width: 100%;
+    padding: 10px;
+    box-shadow: none;
+  }
+
+  .item-image-gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .item-image-gallery img {
-    height: 150px;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+
+  .item-info p {
+    font-size: 14px;
+  }
+
+  .action-button-container {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 150px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+/* タブレット (最小幅601px、最大幅1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .item-details-container {
+    margin: 15px;
+  }
+
+  .item-boxes {
+    width: 90%;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .item-image-gallery {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .item-image-gallery img {
+    width: 48%;
+    height: auto;
+    max-height: 250px;
+  }
+
+  .item-info p {
+    font-size: 16px;
+  }
+
+  .action-button-container {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .btn {
+    width: 180px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
   }
 }
