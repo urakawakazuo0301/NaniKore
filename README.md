@@ -38,6 +38,7 @@
 | quantity_id       | integer    | null: false |
 | notes             | text       |             |
 | color_id          | integer    |             |
+| used              | integer    |             |
 | user              | references | null: false, foreign_key: true |
 
 ### Association

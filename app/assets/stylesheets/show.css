@@ -120,30 +120,43 @@
 }
 
 .btn-edit {
-  background-color: #28a745;
+  background-color: #708090;
   width: 200px;
+  transition: background-color 0.3s ease;
 }
 
 .btn-delete {
   background-color: #dc3545;
   width: 200px;
+  transition: background-color 0.3s ease;
 }
 
-.btn-used {
-  background-color: #ffc107;
+.btn-mark-as-used {
+  background-color: #FF6347;
   width: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-mark-as-unused {
+  background-color: #50c878;
+  width: 200px;
+  transition: background-color 0.3s ease;
 }
 
 .btn-edit:hover {
-  background-color: #218838;
+  background-color: #586068;
 }
 
 .btn-delete:hover {
   background-color: #c82333;
 }
 
-.btn-used:hover {
-  background-color: #e0a800;
+.btn-mark-as-used:hover {
+  background-color: #FF4500;
+}
+
+.btn-mark-as-unused:hover {
+  background-color: #3aa360;
 }
 
 

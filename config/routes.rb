@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    member do
+      patch 'mark_as_used'
+      delete 'delete_image'
+    end
   end
   
   post "items/upload_image", to: "items#upload_image"

@@ -1,0 +1,23 @@
+if (data.success) {
+  const itemElement = document.querySelector(`#item-${data.item_id}`);
+
+  if (itemElement) {
+    // アイテムのステータスを更新
+    const statusElement = itemElement.querySelector('.item-status');
+    const buttonElement = itemElement.querySelector('.btn-mark-as-used');
+    
+    if (statusElement) {
+      statusElement.textContent = data.success ? '使用済み' : '未使用';
+      
+      if (data.success) {
+        buttonElement.textContent = '未使用に戻す';
+        buttonElement.classList.remove('btn-mark-as-used');
+        buttonElement.classList.add('btn-mark-as-unused');
+      } else {
+        buttonElement.textContent = '使用済みにする';
+        buttonElement.classList.remove('btn-mark-as-unused');
+        buttonElement.classList.add('btn-mark-as-used');
+      }
+    }
+  }
+}

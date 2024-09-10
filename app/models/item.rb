@@ -32,6 +32,4 @@ class Item < ApplicationRecord
     items.order(created_at: :desc)
   end
 
-
-
 end
