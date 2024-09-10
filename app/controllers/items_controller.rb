@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :mark_as_used]
 
   def index
   end
@@ -47,11 +47,27 @@ class ItemsController < ApplicationController
     session[:search_filters] = params.slice(:name, :category_id, :quantity_id, :color_id, :notes)
   end
 
+  def mark_as_used
+    @item.update(used: !@item.used)
+    
+    respond_to do |format|
+      format.html { redirect_to search_items_path(session[:search_filters]), notice: 'アイテムの状態が更新されました。' }
+      format.json { render json: { success: @item.used, item_id: @item.id } }
+      format.js
+    end
+  end
+
   def destroy
     @item.destroy
     redirect_to search_items_path(session[:search_filters])
   end
   
+
+  def delete_image
+    image = ActiveStorage::Blob.find(params[:id])
+    image.purge
+    head :no_content
+  end
 
   private
 
@@ -60,7 +76,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, {images: []}).merge(user_id: current_user.id, images: uploaded_images)
+    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, :used, {images: []}).merge(user_id: current_user.id, images: uploaded_images)
   end
 
   def search_params

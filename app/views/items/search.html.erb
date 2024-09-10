@@ -3,7 +3,7 @@
     <div class="items-list">
       <% @items.each do |item| %>
 
-        <%= link_to item_path(item.id), class: "item-box" do %>
+        <%= link_to item_path(item), class: "item-box", id: "item-#{item.id}" do %>
           <% if item.images.attached? %>
             <div class="image-gallery">
               <% item.images.each do |image| %>
@@ -13,9 +13,12 @@
           <% end %>
 
           <div class="item-details">
-            <h3><%= item.name %></h3>
+            <h3><%= item.name%></h3>
             <p>数量: <%= item.quantity.name %></p>
             <p>備考欄: <%= item.notes %></p>
+            <span class="item-status <%= item.used ? 'used-status' : 'unused-status' %>">
+              <%= item.used ? '使用済み' : '未使用' %>
+            </span>
           </div>
         <% end %>
       <% end %>

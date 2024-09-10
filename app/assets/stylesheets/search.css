@@ -49,3 +49,21 @@ p {
 .item-box p:last-of-type {
   margin-bottom: 0;
 }
+
+.item-status {
+  width: 80px;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.used-status {
+  color: white;
+  background-color: #FF6347;
+}
+
+.unused-status {
+  color: white;
+  background-color: #50c878;
+}

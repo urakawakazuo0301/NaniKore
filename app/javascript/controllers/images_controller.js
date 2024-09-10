@@ -1,14 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="images"
 export default class extends Controller {
    /* 静的プロパティを定義（data-{controller}-target で指定したターゲット名） */
    static targets = ["select", "preview", "image_box", "drop", "error"]
 
-   imageSizeOver(file){ // アップロードする画像ファイルサイズの上限（10MB）を超えたかどうか判定
-      const fileSize = (file.size)/1000 // ファイルサイズ(KB)
+   imageSizeOver(file){
+      const fileSize = (file.size)/1024
       if(fileSize > 10000){
-        return true // ファイルサイズが5MBを超えた場合はtrueを返す
+        return true
       }else{
         return false
       }
@@ -37,7 +36,7 @@ export default class extends Controller {
 
       this.errorTarget.textContent = ""
       const uploadedFilesCount = this.previewTarget.querySelectorAll(".image-box").length
-      const files = e.dataTransfer.files // ドラッグ&ドロップした画像ファイルを読み込む
+      const files = e.dataTransfer.files
       if(files.length + uploadedFilesCount > 3){
         this.errorTarget.textContent = "画像アップロード上限は最大3枚です。"
       }else{
@@ -45,38 +44,38 @@ export default class extends Controller {
           if(this.imageSizeOver(file)){
             this.errorTarget.textContent = "ファイルサイズの上限(1枚あたり10MB)を超えている画像はアップロードできません。"
           }else{
-            this.uploadImage(file) // ファイルのアップロード
+            this.uploadImage(file)
           }
         }
       }
-      this.selectTarget.value = "" // 選択ファイルのリセット
+      this.selectTarget.value = ""
     }
 
 
    /* 画像選択時の処理 */
    selectImages(){
     this.errorTarget.textContent = ""
-    const uploadedFilesCount = this.previewTarget.querySelectorAll(".image-box").length // すでにアップロードされた画像の枚数
-    const files = this.selectTargets[0].files // 選択した画像の枚数（これからアップロードする画像）
+    const uploadedFilesCount = this.previewTarget.querySelectorAll(".image-box").length
+    const files = this.selectTargets[0].files
     if(files.length + uploadedFilesCount > 3){
       this.errorTarget.textContent = "画像アップロード上限は最大3枚です。"
     }else{
       for(const file of files){
         if(this.imageSizeOver(file)){
-          this.errorTarget.textContent = "ファイルサイズの上限(1枚あたり5MB)を超えている画像はアップロードできません。"
+          this.errorTarget.textContent = "ファイルサイズの上限(1枚あたり10MB)を超えている画像はアップロードできません。"
         }else{
-          this.uploadImage(file) // ファイルのアップロード
+          this.uploadImage(file)
         }
       }
     }
-    this.selectTarget.value = "" // 選択ファイルのリセット
+    this.selectTarget.value = ""
    }
  
    /* 画像アップロード */
    uploadImage(file){
-     const csrfToken = document.getElementsByName('csrf-token')[0].content // CSRFトークンを取得
+     const csrfToken = document.getElementsByName('csrf-token')[0].content
      const formData = new FormData()
-     formData.append("image", file) // formDataオブジェクトに画像ファイルをセット
+     formData.append("image", file)
      const options = {
        method: 'POST',
        headers: {
@@ -87,47 +86,48 @@ export default class extends Controller {
      /* fetchで画像ファイルをitemコントローラー(upload_imageアクション)に送信 */
      fetch("/items/upload_image", options) 
        .then(response => response.json())
-       .then(data => { // itemコントローラーからのレスポンス(blobデータ)
-         this.previewImage(file, data.id) // 画像プレビューアクションにblobデータのidを受け渡す
+       .then(data => {
+         this.previewImage(file, data.id)
        })
        .catch((error) => {
-         console.error(error)
-       })
+         console.error(error);
+         this.errorTarget.textContent = "画像のアップロードに失敗しました。";
+       });
    }
  
    /* 画像プレビュー */
    previewImage(file, id){
-     const preview = this.previewTarget // プレビュー表示用の<div>要素
+     const preview = this.previewTarget
      const fileReader = new FileReader()
-     const setAttr = (element, obj)=>{ // 属性設定用の関数
+     const setAttr = (element, obj)=>{
        Object.keys(obj).forEach((key)=>{
          element.setAttribute(key, obj[key])
        })
      }
-     fileReader.readAsDataURL(file) // ファイルをData URIとして読み込む
-     fileReader.onload = (function () { // ファイル読み込み時の処理
+     fileReader.readAsDataURL(file)
+     fileReader.onload = (function () {
        const img = new Image()
        const imgBox = document.createElement("div")
        const imgInnerBox = document.createElement("div")
        const deleteBtn = document.createElement("a")
        const hiddenField = document.createElement("input")
-       const imgBoxAttr = { // imgBoxに設定する属性
+       const imgBoxAttr = {
          "class" : "image-box inline-flex mx-1 mb-5",
          "data-controller" : "images",
          "data-images-target" : "image_box",
        }
-       const imgInnerBoxAttr = { // imgInnerBoxに設定する属性
+       const imgInnerBoxAttr = {
          "class" : "text-center"
        }
-       const deleteBtnAttr = { // deleteBtnに設定する属性
+       const deleteBtnAttr = {
          "class" : "link cursor-pointer",
          "data-action" : "click->images#deleteImage"
        }
-       const hiddenFieldAttr = { // hiddenFieldに設定する属性
+       const hiddenFieldAttr = {
          "name" : "item[images][]",
          "style" : "none",
          "type" : "hidden",
-         "value" : id, // 受け取ったidをセット
+         "value" : id,
        }
        setAttr(imgBox, imgBoxAttr)
        setAttr(imgInnerBox, imgInnerBoxAttr)
@@ -143,7 +143,7 @@ export default class extends Controller {
        img.src = this.result
        img.width = 100;
         
-       preview.appendChild(imgBox) // プレビュー表示用の<div>要素の中にimgBox（プレビュー画像の要素）を入れる
+       preview.appendChild(imgBox)
      })
    }
  
