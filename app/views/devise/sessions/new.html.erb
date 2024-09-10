@@ -9,19 +9,19 @@
 
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :メールアドレス%>
+        <%= f.label :メールアドレス, for: 'emailLogin' %>
       </div>
       <div class='field-input'>
-        <%= f.email_field :email%>
+        <%= f.email_field :email, id: 'emailLogin' %>
       </div>
     </div>
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :パスワード%>
-        <input type="checkbox" onChange="document.getElementById('pass').type = (this.checked) ? 'text' : 'password';">
+        <%= f.label :パスワード, for: 'passLogin' %>
+        <span id="togglePasswordLogin" class="eye-icon">😎</span>
       </div>
       <div class='field-input'>
-        <%= f.password_field :password, autocomplete: "off", id:"pass", placeholder: "6文字以上の半角英数字" %>
+        <%= f.password_field :password, autocomplete: "off", id:"passLogin", placeholder: "6文字以上の半角英数字" %>
       </div>
     </div>
     <div class='actions'>

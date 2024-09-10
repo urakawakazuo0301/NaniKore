@@ -1,6 +1,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
-
+import "eye"
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.btn-mark-as-used').forEach(button => {

@@ -6,14 +6,17 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chokokutai&family=Dela+Gothic+One&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
+    <%= javascript_include_tag "eye", type: "module", defer: true %>
   </head>
 
   <body>
@@ -38,11 +41,11 @@
           <div class="nav__right">
             <button class="sign_in_target">
             <span class="sign_in_text">ログイン</span>
-            <%= link_to image_tag('sign_in.svg', width:"30",height:"30"), new_user_session_path, class: :nav__btn %>
+            <%= link_to image_tag('sign_in.svg', width:"30",height:"30"), new_user_session_path, data: { turbo: false }, class: :nav__btn %>
             </button>
             <button class="sign_up_target">
             <span class="sign_up_text">新規登録</span>
-            <%= link_to image_tag('sign_up.svg', width:"30",height:"30"), new_user_registration_path, class: :nav__btn %>
+            <%= link_to image_tag('sign_up.svg', width:"30",height:"30"), new_user_registration_path, data: { turbo: false }, class: :nav__btn %>
             </button>
           </div>
         <% end %>

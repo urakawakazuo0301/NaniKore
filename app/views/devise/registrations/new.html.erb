@@ -6,36 +6,36 @@
 
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :ニックネーム%>
+        <%= f.label :ニックネーム, for: 'nicknameRegister' %>
       </div>
       <div class='field-input'>
-        <%= f.text_field :nickname, autofocus: true%>
+        <%= f.text_field :nickname, id: 'nicknameRegister' %>
       </div>
     </div>
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :メールアドレス%>
+        <%= f.label :メールアドレス, for: 'emailRegister' %>
       </div>
       <div class='field-input'>
-        <%= f.email_field :email%>
+        <%= f.email_field :email, id: 'emailRegister' %>
       </div>
     </div>
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :パスワード%>
-        <input type="checkbox" onChange="document.getElementById('pass').type = (this.checked) ? 'text' : 'password';">
+        <%= f.label :パスワード, for: "passRegister" %>
+        <span id="togglePasswordRegister" class="eye-icon">😎</span>
       </div>
       <div class='field-input'>
-        <%= f.password_field :password, autocomplete: "off", id:"pass", placeholder: "6文字以上の半角英数字" %>
+        <%= f.password_field :password, autocomplete: "off", id:"passRegister", placeholder: "6文字以上の半角英数字" %>
       </div>
     </div>
     <div class='field'>
       <div class='field-label'>
-        <%= f.label :パスワード（確認用）%>
-        <input type="checkbox" onChange="document.getElementById('pass_confirmation').type = (this.checked) ? 'text' : 'password';">
+        <%= f.label :パスワード（確認用）, for: "passConfirmationRegister" %>
+        <span id="togglePasswordConfirmationRegister" class="eye-icon">😎</span>
       </div>
       <div class='field-input'>
-        <%= f.password_field :password_confirmation, autocomplete: "off", id:"pass_confirmation", placeholder: "もう一度入力して下さい" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", id:"passConfirmationRegister", placeholder: "もう一度入力して下さい" %>
       </div>
     </div>
     <div class='actions'>
