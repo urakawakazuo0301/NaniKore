@@ -61,7 +61,7 @@
   </div>
  <% end %>
 
-<%= link_to(new_item_path, class: 'create_btn') do %>
+<%= link_to(new_item_path, class: 'create_btn', data: { turbo: false } ) do %>
   <span class='create_btn_text'>アイテム登録</span>
 <% end %>
 

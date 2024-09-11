@@ -236,6 +236,10 @@ button {
     width: 150px;
   }
 
+  .nav__left {
+    margin-left: 5px;
+  }
+
   .nav__right {
     display: flex;
     flex-direction: row;
@@ -284,6 +288,10 @@ button {
 
   .nav__logo img {
     width: 180px;
+  }
+
+  .nav__left {
+    margin-left: 5px;
   }
 
   .nav__right {
