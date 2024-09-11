@@ -523,9 +523,9 @@ input[type="submit"]:hover {
 }
 
 /* 7.6インチ有機ELディスプレイ (2176×1812) 用スタイル */
-@media (min-width: 2176px) and (min-height: 1812px) and (resolution: 300dpi) {
+@media (min-width: 2000px) and (max-width: 2176px) and (min-height: 1700px) and (max-height: 1812px) {
   form {
-    max-height: calc(100vh - 150px);
+    max-height: calc(100vh - 300px);
     overflow-y: auto;
     padding-bottom: 20px;
   }
