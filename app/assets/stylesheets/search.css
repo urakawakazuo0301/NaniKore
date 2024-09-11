@@ -1,7 +1,10 @@
 .items-list {
   display: flex;
+  padding-bottom: 50px;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
+  max-height: 80vh;
 }
 
 .search-form {

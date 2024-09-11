@@ -1,3 +1,10 @@
+
+.item-details-wrapper {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-bottom: 50px;
+}
+
 .item-details-container {
   display: flex;
   justify-content: center;
@@ -188,14 +195,16 @@
   }
 
   .action-button-container {
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
+    margin-bottom: 20px;
   }
 
   .btn {
-    width: 150px;
+    width: 90%;
+    max-width: 500px;
     padding: 12px;
-    margin-bottom: 10px;
+    margin: 0 auto;
   }
 }
 
@@ -230,11 +239,11 @@
   .action-button-container {
     flex-direction: row;
     gap: 15px;
+    margin-bottom: 20px;
   }
 
   .btn {
     width: 180px;
     padding: 12px 15px;
-    margin-bottom: 15px;
   }
 }

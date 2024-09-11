@@ -242,6 +242,10 @@ button {
     margin: 0;
   }
 
+  .nav__user {
+    white-space: nowrap;
+  }
+
   .nav__right button {
     display: inline-block;
     width: auto;
@@ -286,6 +290,10 @@ button {
     display: flex;
     flex-direction: row;
     margin: 0;
+  }
+
+  .nav__user {
+    white-space: nowrap;
   }
 
   .nav__right button {
