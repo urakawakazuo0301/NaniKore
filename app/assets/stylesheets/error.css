@@ -23,3 +23,108 @@
 .error-alert li {
   list-style-type: disc;
 }
+
+/* スマホ用スタイル（縦向き） */
+@media (max-width: 600px) and (orientation: portrait) {
+  .error-alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 12px;
+  }
+
+  .error-message {
+    font-size: 12px;
+  }
+
+  .error-alert ul {
+    padding-left: 15px;
+  }
+
+  .error-alert li {
+    font-size: 12px;
+  }
+}
+
+/* スマホ用スタイル（横向き） */
+@media (max-width: 600px) and (orientation: landscape) {
+  .error-alert {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  .error-message {
+    font-size: 11px;
+  }
+
+  .error-alert ul {
+    padding-left: 10px;
+  }
+
+  .error-alert li {
+    font-size: 11px;
+  }
+}
+
+/* タブレット用スタイル（縦向き） */
+@media (min-width: 601px) and (max-width: 1024px) and (orientation: portrait) {
+  .error-alert {
+    padding: 12px;
+    margin-bottom: 18px;
+    font-size: 13px;
+  }
+
+  .error-message {
+    font-size: 13px;
+  }
+
+  .error-alert ul {
+    padding-left: 18px;
+  }
+
+  .error-alert li {
+    font-size: 13px;
+  }
+}
+
+/* タブレット用スタイル（横向き） */
+@media (min-width: 601px) and (max-width: 1024px) and (orientation: landscape) {
+  .error-alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 12px;
+  }
+
+  .error-message {
+    font-size: 12px;
+  }
+
+  .error-alert ul {
+    padding-left: 15px;
+  }
+
+  .error-alert li {
+    font-size: 12px;
+  }
+}
+
+/* 高解像度スマホ/タブレット用スタイル */
+@media (min-width: 1025px) and (max-width: 2176px) {
+  .error-alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 14px; /* 高解像度の場合に調整 */
+  }
+
+  .error-message {
+    font-size: 14px;
+  }
+
+  .error-alert ul {
+    padding-left: 20px;
+  }
+
+  .error-alert li {
+    font-size: 14px;
+  }
+}
