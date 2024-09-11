@@ -529,12 +529,13 @@ input[type="submit"]:hover {
   }
 
   .item-details-wrapper {
-    height: auto;
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-    padding-bottom: 50px;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto; 
   }
 
-
+  .item-details-container {
+    max-height: unset;
+    padding: 10px 10px 50px 10px;
+  }
 }
 
