@@ -521,18 +521,6 @@ input[type="submit"]:hover {
     overflow-y: auto;
     padding-bottom: 20px;
   }
-  
-  .items-list {
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
-    padding-bottom: 20px;
-  }
-
-  .item-details-wrapper {
-    max-height: calc(100vh - 200px); 
-    overflow-y: auto;
-    padding-bottom: 20px;
-  }
 
 }
 
