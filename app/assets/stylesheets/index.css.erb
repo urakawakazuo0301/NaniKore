@@ -13,6 +13,9 @@ body {
   justify-content: center;
 }
 
+.search-form {
+  position: fixed;
+}
 
 .create_btn {
   width: 120px;
@@ -40,112 +43,146 @@ body {
 
 /* スマホ用スタイル（縦向き） */
 @media (max-width: 600px) and (orientation: portrait) {
-
-  .create_btn {
-    width: 80px;
-    height: 80px;
-    background: #708090;
-    bottom: 20px;
-    right: 20px;
-    border-radius: 50%;
-    position: fixed;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+.main {
+    padding: 20px;
+    box-sizing: border-box;
   }
 
-  .create_btn_text {
-    color: #fff;
-    font-size: 12px;
-    white-space: nowrap;
-  }
+.search-form {
+  position: static;
+}
 
-  .create_btn:hover {
-    background-color: #36454F;
-  }
+.create_btn {
+  width: 80px;
+  height: 80px;
+  background: #708090;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  position: fixed;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.create_btn_text {
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.create_btn:hover {
+  background-color: #36454F;
+}
 }
 
 /* スマホ用スタイル（横向き） */
 @media (max-width: 600px) and (orientation: landscape) {
-  .create_btn {
-    width: 60px;
-    height: 60px;
-    background: #708090;
-    bottom: 10px;
-    right: 10px;
-    border-radius: 50%;
-    position: fixed;
-    padding: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-  }
+.main {
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-  .create_btn_text {
-    color: #fff;
-    font-size: 10px;
-    white-space: nowrap;
-  }
+.search-form {
+  position: static;
+}
 
-  .create_btn:hover {
-    background-color: #36454F;
-  }
+.create_btn {
+  width: 60px;
+  height: 60px;
+  background: #708090;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 50%;
+  position: fixed;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.create_btn_text {
+  color: #fff;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.create_btn:hover {
+  background-color: #36454F;
+}
 }
 
 /* タブレット用スタイル（縦向き） */
 @media (min-width: 601px) and (max-width: 768px) and (orientation: portrait) {
+.main {
+  padding: 30px;
+  box-sizing: border-box;
+}
 
-  .create_btn {
-    width: 100px;
-    height: 100px;
-    background: #708090;
-    bottom: 20px;
-    right: 20px;
-    border-radius: 50%;
-    position: fixed;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-  }
+.search-form {
+  position: static;
+}
 
-  .create_btn_text {
-    color: #fff;
-    font-size: 14px;
-  }
+.create_btn {
+  width: 100px;
+  height: 100px;
+  background: #708090;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  position: fixed;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
 
-  .create_btn:hover {
-    background-color: #36454F;
-  }
+.create_btn_text {
+  color: #fff;
+  font-size: 14px;
+}
+
+.create_btn:hover {
+  background-color: #36454F;
+}
 }
 
 /* タブレット用スタイル（横向き） */
 @media (min-width: 601px) and (max-width: 768px) and (orientation: landscape) {
-  .create_btn {
-    width: 80px;
-    height: 80px;
-    background: #708090;
-    bottom: 15px;
-    right: 15px;
-    border-radius: 50%;
-    position: fixed;
-    padding: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-  }
+.main {
+  padding: 30px;
+  box-sizing: border-box;
+}
 
-  .create_btn_text {
-    color: #fff;
-    font-size: 12px;
-  }
+.search-form {
+  position: static;
+}
 
-  .create_btn:hover {
-    background-color: #36454F;
-  }
+.create_btn {
+  width: 80px;
+  height: 80px;
+  background: #708090;
+  bottom: 15px;
+  right: 15px;
+  border-radius: 50%;
+  position: fixed;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.create_btn_text {
+  color: #fff;
+  font-size: 12px;
+}
+
+.create_btn:hover {
+  background-color: #36454F;
+}
 }
