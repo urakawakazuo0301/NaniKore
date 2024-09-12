@@ -89,3 +89,5 @@ gem 'active_hash'
 gem "whenever", require: false
 
 gem 'tailwindcss-rails'
+
+gem "aws-sdk-s3", require: false
