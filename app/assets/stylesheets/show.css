@@ -1,15 +1,22 @@
-
 .item-details-wrapper {
-  height: auto;
-  max-height: calc(100vh - 100px);
+  height: calc(100vh - 50px);
   overflow-y: auto;
-  padding-bottom: 50px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.item-details-wrapper h2 {
+  margin-top: 0;
+  text-align: center;
 }
 
 .item-details-container {
   display: flex;
-  justify-content: center;
-  margin: 20px;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box; 
 }
 
 .item-boxes {
@@ -37,6 +44,7 @@
   border-radius: 4px; 
   width: auto;
   height: 200px;
+  object-fit: cover;
 }
 
 .item-info {
@@ -170,16 +178,6 @@
 
 /* スマホ用スタイル（縦向き） */
 @media (max-width: 600px) and (orientation: portrait) {
-  .item-details-wrapper {
-    max-height: calc(100vh - 50px);
-    overflow-y: auto; 
-  }
-
-  .item-details-container {
-    max-height: unset;
-    padding: 10px 10px 50px 10px;
-  }
-
   .item-boxes {
     width: 100%;
     padding: 10px;
@@ -205,6 +203,8 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+    width: 100%;
+    align-items: center; 
   }
 
   .btn {
@@ -217,16 +217,6 @@
 
 /* スマホ用スタイル（横向き） */
 @media (max-width: 600px) and (orientation: landscape) {
-  .item-details-wrapper {
-    max-height: calc(100vh - 50px);
-    overflow-y: auto;
-  }
-
-  .item-details-container {
-    max-height: unset;
-    padding: 10px 10px 50px 10px;
-  }
-
   .item-boxes {
     width: 95%;
     padding: 8px;
@@ -253,10 +243,13 @@
     flex-direction: row;
     gap: 8px;
     margin-bottom: 15px;
+    width: 100%;
+    align-items: center; 
   }
 
   .btn {
     width: 80%;
+    max-width: 500px;
     padding: 10px;
     margin: 0 auto;
   }
@@ -264,16 +257,6 @@
 
 /* タブレット用スタイル（縦向き） */
 @media (min-width: 601px) and (max-width: 1024px) and (orientation: portrait) {
-  .item-details-wrapper {
-    max-height: calc(100vh - 50px);
-    overflow-y: auto;
-  }
-
-  .item-details-container {
-    max-height: unset;
-    padding: 10px 10px 50px 10px;
-  }
-
   .item-boxes {
     width: 90%;
     padding: 15px;
@@ -300,6 +283,8 @@
     flex-direction: row;
     gap: 15px;
     margin-bottom: 20px;
+    width: 100%;
+    justify-content: center;
   }
 
   .btn {
@@ -310,16 +295,6 @@
 
 /* タブレット用スタイル（横向き） */
 @media (min-width: 601px) and (max-width: 1024px) and (orientation: landscape) {
-  .item-details-wrapper {
-    max-height: calc(100vh - 50px);
-    overflow-y: auto;
-  }
-
-  .item-details-container {
-    max-height: unset;
-    padding: 10px 10px 50px 10px;
-  }
-  
   .item-boxes {
     width: 85%;
     padding: 12px;
@@ -346,6 +321,8 @@
     flex-direction: row;
     gap: 12px;
     margin-bottom: 18px;
+    width: 100%;
+    justify-content: center;
   }
 
   .btn {
