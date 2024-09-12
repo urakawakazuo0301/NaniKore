@@ -200,6 +200,7 @@
     width: 100%;
     height: auto;
     max-height: 200px;
+    object-fit: cover;
   }
 
   .item-info p {
@@ -247,6 +248,7 @@
     width: 80%;
     height: auto;
     max-height: 150px;
+    object-fit: cover;
   }
 
   .item-info p {
@@ -294,6 +296,7 @@
     width: 48%;
     height: auto;
     max-height: 250px;
+    object-fit: cover;
   }
 
   .item-info p {
@@ -322,7 +325,7 @@
     padding: 20px;
     box-sizing: border-box;
   }
-  
+
   .item-boxes {
     width: 85%;
     padding: 12px;
@@ -339,6 +342,7 @@
     width: 45%;
     height: auto;
     max-height: 230px;
+    object-fit: cover;
   }
 
   .item-info p {
