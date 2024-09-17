@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_item, only: [:show, :edit, :update, :destroy, :mark_as_used]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :mark_as_used, :delete_image]
+  before_action :move_to_index, only: [:show, :edit]
 
   def index
   end
@@ -43,7 +44,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(search_params)
+    @items = current_user.items.search(search_params)
     session[:search_filters] = params.slice(:name, :category_id, :quantity_id, :color_id, :notes)
   end
 
@@ -72,7 +73,13 @@ class ItemsController < ApplicationController
   private
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    redirect_to '/', alert: 'アクセスできません。'
+  end
+
+  def move_to_index
+    redirect_to '/' unless current_user.id == @item.user_id
   end
 
   def item_params
