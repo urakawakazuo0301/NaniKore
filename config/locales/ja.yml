@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      item: "アイテム"
+
+    attributes:
+      user:
+        nickname: "ニックネーム"
+        email: "メールアドレス"
+      item:
+        images: "画像"
+        name: "名前"
+        category_id: "カテゴリー"
+        quantity_id: "数量"
