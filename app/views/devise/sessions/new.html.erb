@@ -1,7 +1,11 @@
 <div class="contents">
   <h2>ログイン</h2>
   <div class="shared_links">
-  <%= render "devise/shared/links"%>
+    <%= render "devise/shared/links"%>
+  </div>
+
+  <div class='login-flash-message <%= 'error' if flash[:alert].present? %>'>
+    <%= flash[:alert] %>
   </div>
 
   <div class='user-form'>
