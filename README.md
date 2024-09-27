@@ -18,7 +18,7 @@ https://nanikore-app.onrender.com/
 1.トップページのヘッダーにある《新規登録》ボタンをクリックし、新規登録を行う  
 2.トップページの《アイテム登録》ボタンをクリックし、アイテム登録を行う（画像は3枚まで）
 
-[![アイテム登録](https://drive.google.com/file/d/1r8XVpcXJibg0BWYTo--skHOtWeXXQ1tj/view?usp=sharing)](https://drive.google.com/file/d/1r8XVpcXJibg0BWYTo--skHOtWeXXQ1tj/view?usp=drive_link)
+[![アイテム登録](https://github.com/urakawakazuo0301/NaniKore/blob/main/public/images/thumbnail.png)](https://drive.google.com/file/d/1r8XVpcXJibg0BWYTo--skHOtWeXXQ1tj/view?usp=drive_link)
 
 ## アイテム検索
 1.トップページのフォームから条件を絞り、検索結果を表示する（条件を絞らなければ全アイテムの表示、名前と備考欄はフリーワード検索可能）
