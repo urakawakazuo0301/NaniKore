@@ -31,7 +31,7 @@ https://nanikore-app.onrender.com/
 3.《削除》ボタンをクリックすると、アイテムを削除できる（削除前にアラート表示が出る）  
 4.《使用済み/未使用》ボタンをクリックすると、そのアイテムの検索結果一覧画面に《使用済み》か《未使用》かどうか表示できる
 
-[![アイテム編集・削除・使用済み/未使用の切り替え](https://drive.google.com/file/d/1KHgJliht1HgJqnzwzXt8kmmEL3MvzD0V/view?usp=sharing)](https://drive.google.com/file/d/1KHgJliht1HgJqnzwzXt8kmmEL3MvzD0V/view?usp=sharing)
+[![アイテム編集・削除・使用済み/未使用の切り替え](https://github.com/urakawakazuo0301/NaniKore/blob/main/public/images/thumbnail2.png)](https://drive.google.com/file/d/1KHgJliht1HgJqnzwzXt8kmmEL3MvzD0V/view?usp=sharing)
 
 # 画面遷移図
 ![プレビュー](./NaniKore1.drawio.svg)
