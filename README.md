@@ -34,7 +34,7 @@ https://nanikore-app.onrender.com/
 [![アイテム編集・削除・使用済み/未使用の切り替え](https://github.com/urakawakazuo0301/NaniKore/blob/main/public/images/thumbnail2.png)](https://drive.google.com/file/d/1KHgJliht1HgJqnzwzXt8kmmEL3MvzD0V/view?usp=sharing)
 
 # 画面遷移図
-![プレビュー](./NaniKore1.drawio.svg)
+![プレビュー](./Nanikore1.drawio.svg)
 
 # ER図
 ![プレビュー](./NaniKore2.drawio.svg)
