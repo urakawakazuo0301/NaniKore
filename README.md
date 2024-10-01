@@ -23,7 +23,7 @@ https://nanikore-app.onrender.com/
 ## アイテム検索
 1.トップページのフォームから条件を絞り、検索結果を表示する（条件を絞らなければ全アイテムの表示、名前と備考欄はフリーワード検索可能）
 
-[![アイテム検索](https://drive.google.com/file/d/1vskOWh_JzmYHsHbm-GVWJUAMyBGBvU93/view?usp=sharing)](https://drive.google.com/file/d/1vskOWh_JzmYHsHbm-GVWJUAMyBGBvU93/view?usp=sharing)
+[![アイテム検索](https://github.com/urakawakazuo0301/NaniKore/blob/main/public/images/thumbnail.png)](https://drive.google.com/file/d/1vskOWh_JzmYHsHbm-GVWJUAMyBGBvU93/view?usp=sharing)
 
 ## アイテム編集・削除・使用済み/未使用の切り替え
 1.検索結果のアイテムをクリックすると、そのアイテムの詳細画面に遷移する  
