@@ -75,6 +75,9 @@ end
 
 group :production do
   gem 'pg'
+  gem 'unicorn'
+  gem 'raindrops'
+  gem 'kgio'
 end
 
 gem 'pry-rails'
@@ -95,3 +98,4 @@ gem "aws-sdk-s3", require: false
 gem 'rails-i18n'
 
 gem 'rename'
+
