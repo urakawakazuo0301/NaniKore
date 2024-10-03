@@ -4,12 +4,12 @@
     <%= render "devise/shared/links"%>
   </div>
 
-  <div class='login-flash-message <%= 'error' if flash[:alert].present? %>'>
-    <%= flash[:alert] %>
-  </div>
-
   <div class='user-form'>
     <%= form_with model: @user, url: session_path(resource_name), local: true do |f|%>
+
+    <div class='login-flash-message <%= 'error' if flash[:alert].present? %>'>
+      <%= flash[:alert] if flash[:alert].present? %>
+    </div>
 
     <div class='field'>
       <div class='field-label'>
