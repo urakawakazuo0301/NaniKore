@@ -29,10 +29,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 62vw;
+  max-width: 800px;
   text-align: center;
   padding: 10px 20px;
   border-radius: 5px;
+  margin: 0 auto;
 }
 
 .login-flash-message.error {
