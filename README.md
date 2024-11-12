@@ -6,7 +6,7 @@
 
 # URL
 
-https://nanikore-app.onrender.com/
+http://15.168.110.48
 
 # テスト用アカウント
 
