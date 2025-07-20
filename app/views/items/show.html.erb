@@ -1,10 +1,10 @@
 <div class="item-details-wrapper">
-  <h2><%= @item.name %> の詳細</h2>
+  <h2> <%= @item.name %> の詳細</h2>
 
   <div class="back-button-container">
     <button class="return_target">
       <span class="return_text">検索結果へ戻る</span>
-      <%= link_to image_tag('return.svg', width: "30", height: "30"), search_items_path(session[:search_filters]), class: 'return_btn' %>
+      <%= link_to image_tag('return.svg', width:"30",height:"30"), search_items_path(session[:search_filters]), class: 'return_btn'  %>
     </button>
   </div>
 
@@ -12,16 +12,9 @@
     <div class="item-boxes">
       <div class="item-image-gallery">
         <% if @item.images.attached? %>
-          <div class="image-gallery swiper-container swiper-container-<%= @item.id %>">
-            <div class="swiper-wrapper">
-              <% @item.images.each do |image| %>
-                <div class="swiper-slide">
-                  <%= image_tag image, class: "item-image" %>
-                </div>
-              <% end %>
-            </div>
-            <div class="swiper-pagination swiper-pagination-<%= @item.id %>"></div>
-          </div>
+          <% @item.images.each do |image| %>
+            <%= image_tag image, width: "200" %>
+          <% end %>
         <% end %>
       </div>
 
@@ -35,12 +28,13 @@
       </div>
 
       <div class="action-button-container">
-        <%= link_to '編集', edit_item_path(@item), class: 'btn btn-edit' %>
-        <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete }, class: 'btn btn-delete', onclick: "return confirm('本当に削除しますか？');" %>
-        <%= link_to (
-          @item.used ? '未使用に戻す' : '使用済みにする'
-        ), mark_as_used_item_path(@item), data: { turbo_method: :patch }, class: @item.used ? 'btn btn-mark-as-unused' : 'btn btn-mark-as-used' %>
+      <%= link_to '編集', edit_item_path(@item), class: 'btn btn-edit' %>
+      <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete }, class: 'btn btn-delete', onclick: "return confirm('本当に削除しますか？');" %>
+      
+      <%= link_to (
+        @item.used ? '未使用に戻す' : '使用済みにする'
+      ), mark_as_used_item_path(@item), data: { turbo_method: :patch }, class: @item.used ? 'btn btn-mark-as-unused' : 'btn btn-mark-as-used' %>
       </div>
     </div>
-  </div>
+  </div> 
 </div>
