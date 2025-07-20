@@ -2,6 +2,29 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "eye"
 
+document.addEventListener('turbo:load', () => {
+  if (window.innerWidth <= 600) {
+    document.querySelectorAll('.swiper-container').forEach((container) => {
+      const id = container.className.match(/swiper-container-(\d+)/)?.[1];
+      if (!id) return;
+
+      if (container.classList.contains('swiper-initialized')) return;
+
+      const swiper = new Swiper(`.swiper-container-${id}`, {
+        loop: true,
+        slidesPerView: 1,
+        effect: 'fade',
+        pagination: {
+          el: `.swiper-pagination-${id}`,
+          clickable: true,
+        },
+        
+      });
+      container.classList.add('swiper-initialized');
+    });
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.btn-mark-as-used').forEach(button => {
     button.addEventListener('click', (event) => {

@@ -1,28 +1,32 @@
- <% if @items.present? %>
-    <h2>検索結果</h2>
-    <div class="items-list">
-      <% @items.each do |item| %>
-
-        <%= link_to item_path(item), class: "item-box", id: "item-#{item.id}" do %>
-          <% if item.images.attached? %>
-            <div class="image-gallery">
+<% if @items.present? %>
+  <h2>検索結果</h2>
+  <div class="items-list">
+    <% @items.each do |item| %>
+      <%= link_to item_path(item), class: "item-box", id: "item-#{item.id}" do %>
+        <% if item.images.attached? %>
+          <div class="image-gallery swiper-container swiper-container-<%= item.id %>">
+            <div class="swiper-wrapper">
               <% item.images.each do |image| %>
-                <%= image_tag image, width: "100" %>
+                <div class="swiper-slide">
+                  <%= image_tag image, class: "item-image" %>
+                </div>
               <% end %>
             </div>
-          <% end %>
-
-          <div class="item-details">
-            <h3><%= item.name%></h3>
-            <p>数量: <%= item.quantity.name %></p>
-            <p>備考欄: <%= item.notes %></p>
-            <span class="item-status <%= item.used ? 'used-status' : 'unused-status' %>">
-              <%= item.used ? '使用済み' : '未使用' %>
-            </span>
+            <div class="swiper-pagination swiper-pagination-<%= item.id %>"></div>
           </div>
         <% end %>
+
+        <div class="item-details">
+          <h3><%= item.name %></h3>
+          <p>数量: <%= item.quantity.name %></p>
+          <p>備考欄: <%= item.notes %></p>
+          <span class="item-status <%= item.used ? 'used-status' : 'unused-status' %>">
+            <%= item.used ? '使用済み' : '未使用' %>
+          </span>
+        </div>
       <% end %>
-    </div>
-  <% else %>
-    <p>該当するアイテムが見つかりませんでした。</p>
-  <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <p>該当するアイテムが見つかりませんでした。</p>
+<% end %>
