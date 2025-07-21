@@ -260,61 +260,6 @@ input[type="submit"]:hover {
   }
 }
 
-/* スマホ用スタイル（横向き） */
-@media (max-width: 600px) and (orientation: landscape) {
-
-  body {
-    overflow-x: hidden;
-  }
-
-  .main {
-    padding: 0 5px;
-  }
-
-  form {
-    padding: 40px 10px;
-    width: 100%;
-    height: 300px;
-    margin: 0 auto;
-    box-shadow: none;
-    overflow-y: auto;
-    max-height: 70vh;
-  }
-
-  h2 {
-    font-size: 18px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    height: 35px;
-    font-size: 12px;
-  }
-
-  textarea {
-    height: 70px;
-    font-size: 12px;
-  }
-
-  input[type="submit"] {
-    padding: 6px;
-    font-size: 12px;
-  }
-
-  .return_btn {
-    padding: 0.3em 0.8em;
-    font-size: 0.8em;
-  }
-
-  .return_text {
-    font-size: 0.6rem;
-    bottom: -20px;
-  }
-}
-
 /* タブレット用スタイル（縦向き） */
 @media (min-width: 601px) and (max-width: 1024px) and (orientation: portrait) {
 
@@ -395,61 +340,6 @@ input[type="submit"]:hover {
     bottom: -30px;
   }
 
-}
-
-/* タブレット用スタイル（横向き） */
-@media (min-width: 601px) and (max-width: 1024px) and (orientation: landscape) {
-
-  body {
-    overflow-x: hidden;
-  }
-
-  .main {
-    padding: 0 15px;
-  }
-
-  form {
-    padding: 40px 10px;
-    width: 100%;
-    height: 400px;
-    margin: 0 auto;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    max-height: 85vh;
-  }
-
-  h2 {
-    font-size: 20px;
-    margin-top: 50px;
-    margin-bottom: 15px;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    height: 40px;
-    font-size: 13px;
-  }
-
-  textarea {
-    height: 90px;
-    font-size: 13px;
-  }
-
-  input[type="submit"] {
-    padding: 8px 18px;
-    font-size: 15px;
-  }
-
-  .return_btn {
-    padding: 0.4em 1.1em;
-    font-size: 0.9em;
-  }
-
-  .return_text {
-    font-size: 0.7rem;
-    bottom: -25px;
-  }
 }
 
 /* 高さが1850px以下のデバイス用スタイル */
