@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+
+/* 横向きを無効化（スマホ幅とタブレット幅のみ） */
+
+.landscape-overlay {
+  display: none;
+}
+
+@media screen and (orientation: landscape) and (max-width: 1366px) {
+  .landscape-overlay {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    padding: 20px;
+    text-align: center;
+  }
+
+  main, header, footer, .content, .wrapper, .container {
+    display: none !important;
+  }
+
+  body {
+    overflow: hidden;
+  }
+}

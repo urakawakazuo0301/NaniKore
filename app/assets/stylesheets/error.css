@@ -68,27 +68,6 @@
   }
 }
 
-/* スマホ用スタイル（横向き） */
-@media (max-width: 600px) and (orientation: landscape) {
-  .error-alert {
-    padding: 8px;
-    margin-bottom: 10px;
-    font-size: 11px;
-  }
-
-  .error-message {
-    font-size: 11px;
-  }
-
-  .error-alert ul {
-    padding-left: 10px;
-  }
-
-  .error-alert li {
-    font-size: 11px;
-  }
-}
-
 /* タブレット用スタイル（縦向き） */
 @media (min-width: 601px) and (max-width: 1024px) and (orientation: portrait) {
   .error-alert {
@@ -107,26 +86,5 @@
 
   .error-alert li {
     font-size: 13px;
-  }
-}
-
-/* タブレット用スタイル（横向き） */
-@media (min-width: 601px) and (max-width: 1024px) and (orientation: landscape) {
-  .error-alert {
-    padding: 10px;
-    margin-bottom: 15px;
-    font-size: 12px;
-  }
-
-  .error-message {
-    font-size: 12px;
-  }
-
-  .error-alert ul {
-    padding-left: 15px;
-  }
-
-  .error-alert li {
-    font-size: 12px;
   }
 }

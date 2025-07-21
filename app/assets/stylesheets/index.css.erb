@@ -78,43 +78,6 @@ body {
 }
 }
 
-/* スマホ用スタイル（横向き） */
-@media (max-width: 600px) and (orientation: landscape) {
-.main {
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.search-form {
-  position: static;
-}
-
-.create_btn {
-  width: 60px;
-  height: 60px;
-  background: #708090;
-  bottom: 10px;
-  right: 10px;
-  border-radius: 50%;
-  position: fixed;
-  padding: 3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-}
-
-.create_btn_text {
-  color: #fff;
-  font-size: 10px;
-  white-space: nowrap;
-}
-
-.create_btn:hover {
-  background-color: #36454F;
-}
-}
-
 /* タブレット用スタイル（縦向き） */
 @media (min-width: 601px) and (max-width: 768px) and (orientation: portrait) {
 .main {
@@ -144,42 +107,6 @@ body {
 .create_btn_text {
   color: #fff;
   font-size: 14px;
-}
-
-.create_btn:hover {
-  background-color: #36454F;
-}
-}
-
-/* タブレット用スタイル（横向き） */
-@media (min-width: 601px) and (max-width: 768px) and (orientation: landscape) {
-.main {
-  padding: 30px;
-  box-sizing: border-box;
-}
-
-.search-form {
-  position: static;
-}
-
-.create_btn {
-  width: 80px;
-  height: 80px;
-  background: #708090;
-  bottom: 15px;
-  right: 15px;
-  border-radius: 50%;
-  position: fixed;
-  padding: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-}
-
-.create_btn_text {
-  color: #fff;
-  font-size: 12px;
 }
 
 .create_btn:hover {
