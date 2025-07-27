@@ -5,7 +5,7 @@ body {
 
 .main {
   background-image: url("<%= asset_path('background.png') %>");
-  height: 100vh;
+  min-height: 100vh;
   background-size: contain;
   background-color: rgba(255,255,255,0.3);
   background-blend-mode:lighten;
@@ -52,15 +52,16 @@ body {
 
 .search-form {
   position: static;
+  width: 100%;
 }
 
 .create_btn {
-  width: 80px;
-  height: 80px;
+  width: calc(100% - 40px);
+  height: 40px;
   background: #708090;
   bottom: 20px;
   right: 20px;
-  border-radius: 50%;
+  border-radius: 8px;
   position: fixed;
   padding: 5px;
   display: flex;
@@ -73,6 +74,7 @@ body {
   color: #fff;
   font-size: 12px;
   white-space: nowrap;
+  text-align: center;
 }
 
 .create_btn:hover {

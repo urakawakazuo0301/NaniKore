@@ -193,17 +193,17 @@ input[type="submit"]:hover {
   }
   
   .main {
-    padding: 0 10px;
+    padding: 0px 10px 0px 10px;
   }
 
   form {
-    padding: 40px 10px;
+    padding: 0 10px;
     width: 100%;
-    height: 450px;
+    height: auto;
     margin: 0 auto;
     box-shadow: none;
-    overflow-y: auto;
-    max-height: 80vh; 
+    overflow-y: visible;
+    max-height: none; 
   }
 
   .shared_links {
@@ -212,12 +212,12 @@ input[type="submit"]:hover {
 
   h2 {
     font-size: 20px;
-    margin-top: 40px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 
   .field {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   .field-label {
@@ -232,7 +232,7 @@ input[type="submit"]:hover {
   }
 
   textarea {
-    height: 80px;
+    height: 40px;
     font-size: 12px;
   }
 
@@ -242,7 +242,6 @@ input[type="submit"]:hover {
   }
 
   .radio-item {
-    display: block;
     margin-bottom: 5px;
   }
 
