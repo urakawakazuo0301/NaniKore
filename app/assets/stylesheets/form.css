@@ -13,6 +13,7 @@ form {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 800px;
+  max-width: 100%;
   height: auto;
   max-height: calc(100vh - 100px);
   margin: 0 auto;
@@ -193,12 +194,19 @@ input[type="submit"]:hover {
   }
   
   .main {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
     padding: 0px 10px 0px 10px;
   }
 
   form {
     padding: 0 10px;
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
     height: auto;
     margin: 0 auto;
     box-shadow: none;
