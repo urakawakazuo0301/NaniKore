@@ -36,6 +36,10 @@
             <%= f.label :カラー %>
           </div>
           <div class='field-input'>
+            <div class="radio-item">
+              <%= f.radio_button :color_id, nil, id: "color_id_none" %>
+              <%= f.label :color_id, "未選択", for: "color_id_none" %>
+            </div>
             <%= f.collection_radio_buttons :color_id, Color.all, :id, :name do |b| %>
               <div class="radio-item color-<%= b.object.id %>">
                 <%= b.radio_button %>
