@@ -80,6 +80,18 @@ p {
   background-color: #50c878;
 }
 
+.no-results-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.no-results-message {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: center;
+}
 
 /* スマホ用スタイル（縦向き） */
 @media (max-width: 600px) and (orientation: portrait) {
@@ -131,6 +143,12 @@ p {
   .item-status {
     width: 70px;
     padding: 4px;
+  }
+
+  .no-results-message {
+  font-size: 1.0rem;
+  color: #555;
+  text-align: center;
   }
 
 }
