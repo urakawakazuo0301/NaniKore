@@ -33,7 +33,7 @@
       
       <%= link_to (
         @item.used ? '未使用に戻す' : '使用済みにする'
-      ), mark_as_used_item_path(@item), data: { turbo_method: :patch }, class: @item.used ? 'btn btn-mark-as-unused' : 'btn btn-mark-as-used' %>
+      ), mark_as_used_item_path(@item), data: { turbo_method: :patch }, class: @item.used ? 'btn btn-mark-as-unused' : 'btn btn-mark-as-used', onclick: "return confirm('本当に#{@item.used ? '未使用に戻しますか？' : '使用済みにしますか？'}');" %>
       </div>
     </div>
   </div> 
