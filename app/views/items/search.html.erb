@@ -1,4 +1,11 @@
 <% if @items.present? %>
+
+  <% flash.each do |type, message| %>
+    <div class="flash-toast <%= type %>" role="status" aria-live="polite">
+      <%= message %>
+    </div>
+  <% end %>
+  
   <h2 class="search-heading">検索結果</h2>
   <div class="items-list">
     <% @items.each do |item| %>

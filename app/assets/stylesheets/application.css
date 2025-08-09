@@ -14,8 +14,33 @@
  *= require_self
  */
 
-/* 横向きを無効化（スマホ幅とタブレット幅のみ） */
+:root {
+  --header-height: 60px;
+}
 
+.flash-toast {
+  position: fixed;
+  top: calc(var(--header-height) + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  max-width: min(90vw, 560px);
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #e6ffed;
+  color: #0b5137;
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+  opacity: 0;
+  animation: toast-in .2s ease-out forwards, toast-out .2s ease-in forwards 4s;
+}
+
+.flash-toast.notice { background:#e6ffed; color:#0b5137; }
+
+@keyframes toast-in { to { opacity: 1; } }
+@keyframes toast-out { to { opacity: 0; } }
+
+
+/* 横向きを無効化（スマホ幅とタブレット幅のみ） */
 .landscape-overlay {
   display: none;
 }
