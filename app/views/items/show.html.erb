@@ -29,11 +29,12 @@
 
       <div class="action-button-container">
       <%= link_to '編集', edit_item_path(@item), class: 'btn btn-edit' %>
-      <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete }, class: 'btn btn-delete', onclick: "return confirm('本当に削除しますか？');" %>
+      <%= link_to '削除', item_path(@item.id), data: { turbo_method: :delete, confirm_text: '本当に削除しますか？' }, class: 'btn btn-delete js-confirm' %>
       
       <%= link_to (
         @item.used ? '未使用に戻す' : '使用済みにする'
-      ), mark_as_used_item_path(@item), data: { turbo_method: :patch }, class: @item.used ? 'btn btn-mark-as-unused' : 'btn btn-mark-as-used', onclick: "return confirm('本当に#{@item.used ? '未使用に戻しますか？' : '使用済みにしますか？'}');" %>
+      ), mark_as_used_item_path(@item), data: { turbo_method: :patch, confirm_text: "本当に#{@item.used ? '未使用に戻しますか？' : '使用済みにしますか？'}" }, 
+      class: (@item.used ? 'btn btn-mark-as-unused js-confirm' : 'btn btn-mark-as-used js-confirm') %>
       </div>
     </div>
   </div> 
