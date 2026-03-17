@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to '/'
+      redirect_to '/', notice: 'アイテムを登録しました。'
     else
       render 'new', status: :unprocessable_entity
     end
@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
         new_images = params[:item][:images].select { |img| img.is_a?(ActionDispatch::Http::UploadedFile) }
         @item.images.attach(new_images) unless new_images.empty?
       end
-      redirect_to item_path(@item)
+      redirect_to item_path(@item), notice: 'アイテムの情報が更新されました。'
     else
       render 'edit', status: :unprocessable_entity
     end
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to search_items_path(session[:search_filters])
+    redirect_to search_items_path(session[:search_filters]), notice: 'アイテムを削除しました。'
   end
   
 

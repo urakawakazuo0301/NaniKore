@@ -21,7 +21,8 @@
     <%= javascript_include_tag "eye", type: "module", defer: true %>
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   </head>
   <body>
     <header class="header">
@@ -59,5 +60,37 @@
   <div class="landscape-overlay">
     このアプリは縦向きでのみご利用いただけます。
   </div>
+
+    <% if flash[:notice] || flash[:alert] %>
+    <script>
+      document.addEventListener("turbo:load", function() {
+        const notice = "<%= j flash[:notice] %>";
+        const alert = "<%= j flash[:alert] %>";
+
+        if (notice) {
+          Swal.fire({
+            icon: 'success',
+            title: '完了',
+            text: notice,
+            timer: 5000,
+            showConfirmButton: false,
+            toast: true,
+            position: 'top'
+          });
+        }
+
+        if (alert) {
+          Swal.fire({
+            icon: 'error',
+            title: 'エラー',
+            text: alert,
+            confirmButtonText: '閉じる',
+            confirmButtonColor: '#d33'
+          });
+        }
+      }, { once: true }); // 二重表示防止
+    </script>
+  <% end %>
+
   </body>
 </html>
