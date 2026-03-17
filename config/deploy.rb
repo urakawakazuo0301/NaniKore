@@ -8,6 +8,8 @@ set :application, 'NaniKore'
 set :repo_url,  'git@github.com:urakawakazuo0301/NaniKore.git'
 set :branch, 'main'
 
+append :linked_files, "config/database.yml", "config/master.key"
+
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
@@ -16,7 +18,8 @@ set :rbenv_ruby, '3.2.0'
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],
-                                  keys: ['~/.ssh/my-key-pair.pem'] 
+                                keys: ['/Users/nakagawayukio/Downloads/nanikore-key.pem'],
+                                forward_agent: true
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
