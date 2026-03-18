@@ -8,7 +8,7 @@ set :application, 'NaniKore'
 set :repo_url,  'git@github.com:urakawakazuo0301/NaniKore.git'
 set :branch, 'main'
 
-append :linked_files, "config/database.yml", "config/master.key"
+append :linked_files, "config/database.yml", "config/master.key", ".env"
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
