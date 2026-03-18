@@ -104,3 +104,4 @@ gem 'rails-i18n'
 
 gem 'rename'
 
+gem 'dotenv-rails'
