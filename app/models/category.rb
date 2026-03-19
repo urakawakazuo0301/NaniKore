@@ -17,7 +17,7 @@ class Category < ActiveHash::Base
     { id: 15, name: 'テレビボード・テレビ台' },
     { id: 16, name: 'ハンガーラック・コートハンガー' },
     { id: 17, name: '玄関収納・小物' },
-    { id: 18, name: 'ライト証明' },
+    { id: 18, name: 'ライト照明' },
     { id: 19, name: 'ベッド' },
     { id: 20, name: '寝具・タオル' },
     { id: 21, name: 'ミラー・ドレッサー' },
