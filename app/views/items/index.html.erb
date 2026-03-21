@@ -1,12 +1,6 @@
 <div class="main">
   
  <% if user_signed_in? %>
-
-  <% flash.each do |type, message| %>
-    <div class="flash-toast <%= type %>" role="status" aria-live="polite">
-      <%= message %>
-    </div>
-  <% end %>
   
   <div class="search-form">
     <h2>アイテム検索</h2>
