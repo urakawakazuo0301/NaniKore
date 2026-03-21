@@ -57,40 +57,51 @@
       </div>
     </header>
   <%= yield %>
-  <div class="landscape-overlay">
-    このアプリは縦向きでのみご利用いただけます。
-  </div>
+    <div class="landscape-overlay">
+      このアプリは縦向きでのみご利用いただけます。
+    </div>
 
-    <% if flash[:notice] || flash[:alert] %>
+    <div id="flash-data">
+      <% flash.each do |key, value| %>
+        <div class="flash-message" 
+            data-type="<%= key %>" 
+            data-message="<%= j value %>"
+            data-turbo-temporary></div>
+      <% end %>
+    </div>
+
     <script>
       document.addEventListener("turbo:load", function() {
-        const notice = "<%= j flash[:notice] %>";
-        const alert = "<%= j flash[:alert] %>";
+        const flashMessages = document.querySelectorAll(".flash-message");
 
-        if (notice) {
-          Swal.fire({
-            icon: 'success',
-            title: '完了',
-            text: notice,
-            timer: 5000,
-            showConfirmButton: false,
-            toast: true,
-            position: 'top'
-          });
-        }
+        flashMessages.forEach(flash => {
+          const type = flash.dataset.type;
+          const message = flash.dataset.message;
 
-        if (alert) {
-          Swal.fire({
-            icon: 'error',
-            title: 'エラー',
-            text: alert,
-            confirmButtonText: '閉じる',
-            confirmButtonColor: '#d33'
-          });
-        }
-      }, { once: true }); // 二重表示防止
+          if (message) {
+            if (type === "notice") {
+              Swal.fire({
+                icon: 'success',
+                title: '完了',
+                text: message,
+                timer: 3000,
+                showConfirmButton: false,
+                toast: true,
+                position: 'top'
+              });
+            } else if (type === "alert") {
+              Swal.fire({
+                icon: 'error',
+                title: 'エラー',
+                text: message,
+                confirmButtonText: '閉じる',
+                confirmButtonColor: '#d33'
+              });
+            }
+          }
+          flash.remove();
+        });
+      });
     </script>
-  <% end %>
-
   </body>
 </html>
