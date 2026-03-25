@@ -19,7 +19,7 @@ class ItemSharesController < ApplicationController
         end
       end
     else
-      redirect_to item_path(@item), alert: "ユーザーが見つかりませんでした。"
+      redirect_to item_path(@item), alert: "ユーザーが見つかりませんでした。正しいメールアドレスを入力してください。"
     end
   end
 

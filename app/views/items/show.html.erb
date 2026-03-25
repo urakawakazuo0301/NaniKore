@@ -26,6 +26,44 @@
         <p><strong>登録日:</strong> <%= @item.created_at.strftime("%Y年%m月%d日") %></p>
         <p><strong>更新日:</strong> <%= @item.updated_at.strftime("%Y年%m月%d日") %></p>
       </div>
+      
+      <div class="item-sharing-section">
+        <hr>
+        <h3>共有設定</h3>
+        
+        <%# 共有相手を追加するフォーム %>
+        <div class="share-form">
+          <p>他のユーザーのメールアドレスを入力して共有を許可します</p>
+          <%= form_with url: item_item_shares_path(@item), local: true, class: "flex-form" do |f| %>
+            <%= f.email_field :email, placeholder: "example@gmail.com", required: true, class: "input-email" %>
+            <%= f.submit "共有を追加", class: "btn-share" %>
+          <% end %>
+        </div>
+
+        <%# 現在の共有ユーザーリスト %>
+        <div class="shared-users-list">
+          <p><strong>現在の共有ユーザー:</strong></p>
+          <% if @item.item_shares.any? %>
+            <ul>
+              <% @item.item_shares.each do |share| %>
+                <li>
+                  <%= share.user.nickname %> (<%= share.user.email %>)
+                  <%# 共有解除ボタン（作成者本人のみ表示したい場合は policy(@item).update? を調整） %>
+                  <%= link_to '解除', item_item_share_path(@item, share), 
+                      data: { turbo_method: :delete, turbo_confirm: "このユーザーとの共有を解除しますか？" }, 
+                      class: "text-delete" %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>共有しているユーザーはいません。</p>
+          <% if @item.user != current_user %>
+            <p>※あなたは作成者（<%= @item.user.nickname %>さん）から共有されています</p>
+          <% end %>
+          <% end %>
+        </div>
+        <hr>
+      </div>
 
       <div class="action-button-container">
       <%= link_to '編集', edit_item_path(@item), class: 'btn btn-edit' %>
