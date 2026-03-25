@@ -2,7 +2,8 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_many_attached :images
-  
+  has_many :item_shares, dependent: :destroy
+  has_many :shared_users, through: :item_shares, source: :user
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -23,7 +24,7 @@ class Item < ApplicationRecord
   scope :filter_by_notes, -> (notes) { where("notes LIKE ?", "%#{notes}%") }
 
   def self.search(params)
-    items = Item.all
+    items = all
     items = items.filter_by_name(params[:name]) if params[:name].present?
     items = items.filter_by_category(params[:category_id]) if params[:category_id].present?
     items = items.filter_by_quantity(params[:quantity_id]) if params[:quantity_id].present?

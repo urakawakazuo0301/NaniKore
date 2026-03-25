@@ -1,17 +1,19 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_item, only: [:show, :edit, :update, :destroy, :mark_as_used, :delete_image]
-  before_action :move_to_index, only: [:show, :edit]
 
   def index
+    @items = policy_scope(Item)
   end
   
   def new
     @item = Item.new
+    authorize @item
   end
 
   def create
     @item = Item.new(item_params)
+    authorize @item
     if @item.save
       redirect_to '/', notice: 'アイテムを登録しました。'
     else
@@ -20,12 +22,15 @@ class ItemsController < ApplicationController
   end
 
   def show
+    authorize @item
   end
 
   def edit
+    authorize @item
   end
 
   def update
+    authorize @item
     if @item.update(item_params)
       if params[:item][:images].present?
         new_images = params[:item][:images].select { |img| img.is_a?(ActionDispatch::Http::UploadedFile) }
@@ -39,16 +44,18 @@ class ItemsController < ApplicationController
 
 
   def upload_image
+    authorize @item
     @image_blob = create_blob(params[:image])
     render json: @image_blob
   end
 
   def search
-    @items = current_user.items.search(search_params)
+    @items = policy_scope(Item).search(search_params)
     session[:search_filters] = params.slice(:name, :category_id, :quantity_id, :color_id, :notes)
   end
 
   def mark_as_used
+    authorize @item
     @item.update(used: !@item.used)
     
     respond_to do |format|
@@ -59,12 +66,14 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    authorize @item
     @item.destroy
     redirect_to search_items_path(session[:search_filters]), notice: 'アイテムを削除しました。'
   end
   
 
   def delete_image
+    authorize @item
     image = ActiveStorage::Blob.find(params[:id])
     image.purge
     head :no_content
@@ -73,14 +82,11 @@ class ItemsController < ApplicationController
   private
 
   def set_item
-    @item = current_user.items.find(params[:id])
+    @item = Item.find(params[:id])
     rescue ActiveRecord::RecordNotFound
     redirect_to '/', alert: 'アクセスできません。'
   end
 
-  def move_to_index
-    redirect_to '/' unless current_user.id == @item.user_id
-  end
 
   def item_params
     params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, :used, {images: []}).merge(user_id: current_user.id, images: uploaded_images)
