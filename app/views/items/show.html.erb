@@ -26,14 +26,55 @@
         <p><strong>登録日:</strong> <%= @item.created_at.strftime("%Y年%m月%d日") %></p>
         <p><strong>更新日:</strong> <%= @item.updated_at.strftime("%Y年%m月%d日") %></p>
       </div>
+      
+      <% if policy(@item).share? %>
+        <div class="item-sharing-section">
+          <p class="share-label-text">他のユーザーのメールアドレスを入力して共有を許可します</p>
+
+          <%= form_with url: item_item_shares_path(@item), local: true, class: "share-flex-form" do |f| %>
+            <%= f.email_field :email, placeholder: "example@gmail.com", required: true, class: "share-input" %>
+            <%= f.submit "共有を追加", class: "share-btn" %>
+          <% end %>
+
+          <div class="shared-users-list">
+            <p>現在の共有ユーザー：</p>
+            <% if @item.item_shares.any? %>
+              <ul>
+                <% @item.item_shares.each do |share| %>
+                  <li>
+                    <span class="user-mail-text"><%= share.user.nickname %> (<%= share.user.email %>)</span>
+                    <%= link_to '解除', item_item_share_path(@item, share), 
+                        data: { turbo_method: :delete, turbo_confirm: "このユーザーとの共有を解除しますか？" }, 
+                        class: "text-delete" %>
+                  </li>
+                <% end %>
+              </ul>
+            <% else %>
+              <div class="no-share-info">
+                <p>共有しているユーザーはいません。</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if !policy(@item).share? && @item.user != current_user %>
+        <div class="shared-from-notice">
+          <p>※このアイテムは作成者（<%= @item.user.nickname %>さん）から共有されています</p>
+        </div>
+      <% end %>
 
       <div class="action-button-container">
-      <%= link_to '編集', edit_item_path(@item), class: 'btn btn-edit' %>
+        <% if policy(@item).edit? %>
+          <%= link_to '編集', edit_item_path(@item), class: 'btn btn-edit' %>
+        <% end %>
 
         <%# 削除ボタン: data-turbo-confirm を使用 %>
-        <%= link_to '削除', item_path(@item.id), 
-            data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, 
-            class: 'btn btn-delete' %>
+        <% if policy(@item).destroy? %>
+          <%= link_to '削除', item_path(@item.id), 
+              data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, 
+              class: 'btn btn-delete' %>
+        <% end %>    
         
         <%# 状態変更ボタン: data-turbo-confirm を使用 %>
         <%= link_to (@item.used ? '未使用に戻す' : '使用済みにする'), 

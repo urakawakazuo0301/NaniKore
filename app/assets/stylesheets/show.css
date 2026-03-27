@@ -61,6 +61,127 @@
   margin-bottom: 0;
 }
 
+/* --- 共有セクション全体の枠 --- */
+.item-sharing-section {
+  width: 100% !important;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  text-align: left;
+}
+
+.share-label-text {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+/* 入力欄とボタンの横並び設定 */
+.share-flex-form {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+
+/* 入力欄 */
+.share-input {
+  flex: 1 !important;
+  height: 44px !important;
+  padding: 0 15px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  font-size: 14px !important;
+  box-sizing: border-box !important;
+  background-color: #fff !important;
+  margin: 0 !important;
+}
+
+/* ボタン */
+.share-btn {
+  flex: 0 0 120px !important;
+  width: 120px !important;
+  height: 44px !important;
+  background-color: #4a86b8 !important;
+  color: white !important;
+  border: 1px solid #4a86b8 !important;
+  border-radius: 4px!important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+.share-btn:hover {
+  background-color: #3b6d96 !important;
+}
+
+/* --- 共有ユーザーリストのデザイン --- */
+.shared-users-list {
+  text-align: left;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.shared-users-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.shared-users-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.user-mail-text {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.text-delete {
+  color: #dc3545;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 5px 12px;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.text-delete:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.no-share-info {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.shared-from-notice {
+  margin-top: 20px;
+}
+
+.shared-from-notice p {
+  color: #dc3545;
+}
+
 /* ボタンを真ん中に */
 .back-button-container {
   display: flex;
@@ -205,6 +326,15 @@
 
   .item-info p {
     font-size: 14px;
+  }
+
+  .flex-form {
+    flex-direction: row; /* 横並びを維持 */
+  }
+  
+  .btn-share {
+    padding: 0 10px;
+    font-size: 12px;
   }
 
   .action-button-container {
