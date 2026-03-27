@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_item, only: [:show, :edit, :update, :destroy, :mark_as_used, :delete_image]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :mark_as_used, :delete_image, :upload_image]
 
   def index
     @items = policy_scope(Item)
@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.user_id = current_user.id
     authorize @item
     if @item.save
       redirect_to '/', notice: 'アイテムを登録しました。'
@@ -44,7 +45,12 @@ class ItemsController < ApplicationController
 
 
   def upload_image
+  if @item
     authorize @item
+  else
+    authorize Item, :create?
+  end
+
     @image_blob = create_blob(params[:image])
     render json: @image_blob
   end
@@ -82,14 +88,16 @@ class ItemsController < ApplicationController
   private
 
   def set_item
+    if params[:id]
     @item = Item.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
+    end
+  rescue ActiveRecord::RecordNotFound
     redirect_to '/', alert: 'アクセスできません。'
   end
 
 
   def item_params
-    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, :used, {images: []}).merge(user_id: current_user.id, images: uploaded_images)
+    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, :used, {images: []}).merge(images: uploaded_images)
   end
 
   def search_params
