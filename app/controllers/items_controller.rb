@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
   before_action :set_item, only: [:show, :edit, :update, :destroy, :mark_as_used, :delete_image, :upload_image]
 
   def index
