@@ -15,7 +15,13 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     flash[:alert] = "この操作を行う権限がありません。"
-    redirect_to(request.referrer || root_path)
+    flash[:pundit_error] = true
+    
+    if user_signed_in?
+      redirect_to(request.referrer || root_path)
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def basic_auth
