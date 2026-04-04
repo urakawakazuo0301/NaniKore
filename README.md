@@ -6,101 +6,169 @@
 
 # URL
 
-http://15.168.110.48
+http://18.179.96.132
 
 # テスト用アカウント
+アプリの共有機能をスムーズにご確認いただくため、2つのアカウントを用意しています。
 
-アドレス：test@test.com  
-パスワード：test1234
+| アカウント | メールアドレス | パスワード | 役割 |
+| :--- | :--- | :--- | :--- |
+| テスト用1 | test1@test.com | test1234 | 共有元（アイテムを持つ側） |
+| テスト用2 | test2@test.com | test1234 | 共有先（閲覧する側） |
 
 # 利用方法
-## アイテム登録
-1.トップページのヘッダーにある《新規登録》ボタンをクリックし、新規登録を行う  
-2.トップページの《アイテム登録》ボタンをクリックし、アイテム登録を行う（画像は3枚まで）
 
-[![アイテム登録](https://github.com/urakawakazuo0301/NaniKore/blob/main/public/images/thumbnail.png)](https://drive.google.com/file/d/1r8XVpcXJibg0BWYTo--skHOtWeXXQ1tj/view?usp=drive_link)
+## アイテム登録
+1. トップページのヘッダーにある《新規登録》ボタンをクリックし、新規登録を行う  
+2. トップページの《アイテム登録》ボタンをクリックし、アイテム登録を行う（画像は3枚まで）
+
+【ここに動画：アイテム登録 を貼り付け】
 
 ## アイテム検索
-1.トップページのフォームから条件を絞り、検索結果を表示する（条件を絞らなければ全アイテムの表示、名前と備考欄はフリーワード検索可能）
+1. トップページのフォームから条件を絞り、検索結果を表示する（条件を絞らなければ全アイテムの表示、名前と備考欄はフリーワード検索可能）
 
-[![アイテム検索](https://github.com/urakawakazuo0301/NaniKore/blob/main/public/images/thumbnail.png)](https://drive.google.com/file/d/1vskOWh_JzmYHsHbm-GVWJUAMyBGBvU93/view?usp=sharing)
+【ここに動画：アイテム検索 を貼り付け】
 
 ## アイテム編集・削除・使用済み/未使用の切り替え
-1.検索結果のアイテムをクリックすると、そのアイテムの詳細画面に遷移する  
-2.アイテム詳細画面には《編集》《削除》《使用済み/未使用》ボタンがあり、《編集》ボタンをクリックするとアイテムの詳細を編集できる  
-3.《削除》ボタンをクリックすると、アイテムを削除できる（削除前にアラート表示が出る）  
-4.《使用済み/未使用》ボタンをクリックすると、そのアイテムの検索結果一覧画面に《使用済み》か《未使用》かどうか表示できる
+1. 検索結果のアイテムをクリックすると、そのアイテムの詳細画面に遷移する  
+2. アイテム詳細画面には《編集》《削除》《使用済み/未使用》ボタンがあり、《編集》ボタンをクリックするとアイテムの詳細を編集できる  
+3. 《削除》ボタンをクリックすると、アイテムを削除できる（削除前にアラート表示が出る）  
+4. 《使用済み/未使用》ボタンをクリックすると、そのアイテムの検索結果一覧画面に《使用済み》か《未使用》かどうか表示できる
 
-[![アイテム編集・削除・使用済み/未使用の切り替え](https://github.com/urakawakazuo0301/NaniKore/blob/main/public/images/thumbnail2.png)](https://drive.google.com/file/d/1KHgJliht1HgJqnzwzXt8kmmEL3MvzD0V/view?usp=sharing)
+【ここに動画：アイテム編集・切り替え を貼り付け】
+
+## アイテム共有（ユーザー間共有機能）
+1. アイテム詳細画面にある共有用フォームから、共有したい相手のメールアドレス（例：`test2@test.com`）を入力し、共有を実行する
+2. 共有されたユーザーでログインすると、そのアイテムが自身の検索結果や一覧にも表示されるようになる
+3. Punditにより、共有を受けていない第三者がURLを直接入力してもアクセスできないよう権限管理を行っている
+
+【ここに動画：アイテム共有 を貼り付け】
+
+※ 動作確認の際は、上記「テスト用アカウント」の2つ（AとB）を使い、AからBへ共有を行うことで実際の挙動を確認いただけます。
 
 # 画面遷移図
-![プレビュー](./Nanikore1.drawio.svg)
+
+```mermaid
+graph TD
+    A[新規登録/ログイン] --> B[トップページ]
+    B <--> C[アイテム検索ページ]
+    C <--> D[検索結果一覧ページ<br/>自分のアイテム + 共有されたアイテム]
+    D <--> E[アイテム詳細ページ]
+    E <--> F[アイテム編集ページ]
+    B <--> G[アイテム登録ページ]
+    
+    %% 共有機能の導線
+    E -.-> H{共有実行}
+    H -.-> |メールアドレス入力| D
+    
+    style H fill:#ccc,stroke:#333,stroke-width:2px,color:#000
+```
 
 # ER図
-![プレビュー](./NaniKore2.drawio.svg)
+
+```mermaid
+erDiagram
+    users ||--o{ items : "作成・所有"
+    users ||--o{ item_shares : "共有される"
+    items ||--o{ item_shares : "共有される"
+
+    users {
+        bigint id PK
+        string nickname "null: false"
+        string email "null: false, unique"
+        string encrypted_password "null: false"
+    }
+
+    items {
+        bigint id PK
+        string name "null: false"
+        integer category_id "null: false"
+        integer quantity_id "null: false"
+        text notes
+        integer color_id
+        boolean used "default: false"
+        bigint user_id FK "null: false"
+    }
+
+    item_shares {
+        bigint id PK
+        bigint item_id FK "null: false"
+        bigint user_id FK "null: false"
+    }
+```
 
 # テーブル設計
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
-| encrypted_password | string | null: false |
+| encrypted_password | string | null: false               |
 
 ### Association
-
- - has_many :items
+- has_many :items
+- has_many :item_shares
+- has_many :shared_items, through: :item_shares, source: :item
 
 
 ## items テーブル
 
-| Column            | Type       | Options     |
-| ----------        | ---------- | ----------- |
-| name              | string     | null: false |
-| category_id       | integer    | null: false |
-| quantity_id       | integer    | null: false |
-| notes             | text       |             |
-| color_id          | integer    |             |
-| used              | integer    |             |
-| user              | references | null: false, foreign_key: true |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| name        | string     | null: false                    |
+| category_id | integer    | null: false                    |
+| quantity_id | integer    | null: false                    |
+| notes       | text       |                                |
+| color_id    | integer    |                                |
+| used        | boolean    | default: false                 |
+| user        | references | null: false, foreign_key: true |
 
 ### Association
+- belongs_to :user
+- has_many :item_shares
+- has_many :shared_users, through: :item_shares, source: :user
 
- - belongs_to :user
+
+## item_shares テーブル（中間テーブル）
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| item   | references | null: false, foreign_key: true |
+| user   | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :item
+- belongs_to :user
+
 
 # アプリケーションを作成した背景
-
 先日、自宅のイスが壊れた際に、付属のネジを探そうとしましたが、思っていた場所に見当たらず、結局家中を探し回る羽目になりました。  
 その時、もし付属品を写真で管理できるアプリがあれば、何年も使わずに保管している付属品でもすぐに見つけられるのに、と感じました。  
 そこで、このアプリの制作を決意しました。  
 ただ写真で保存するだけでなく、フリーワード検索や数量、色など、さまざまな条件で簡単に付属品を探し出せる工夫も取り入れています。
 
 # 実装予定の機能
-- ユーザー共有機能
 - 画像のスライドショー
 - フォームのポップアップ表示
-- パスワードを再設定できるようにする
 
 # 開発環境
-- HTML
-- CSS（TailWindCSS）
-- JavaScript（Stimulus.js・FontAwesome）
-- Ruby on Rails（Active Storage・Devise）
+- **Backend**: Ruby on Rails (Active Storage, Devise, Pundit)
+- **Frontend**: HTML, CSS (Tailwind CSS), JavaScript (Stimulus.js, FontAwesome)
+- **Infrastructure**: AWS (EC2) 
 
 # 工夫した点
-1つ目は、アイテム登録や編集時に写真を複数枚登録でき、さらにプレビュー表示機能を実装したことです。  
-付属品はすぐに使うこともあれば、長期間保管する場合もあります。そのため、1枚だけでなく、最大3枚まで写真を保存できるようにしました。  
-また、誤って別のアイテムの写真を登録することを防ぐために、プレビュー機能を追加し、登録の利便性と正確性を向上させています。 
 
-2つ目は、ドラッグ＆ドロップ機能を実装したことです。  
-このアプリは、スマホやタブレットでの使用を主に考えており、携帯性と機動性を重視しています。  
-しかし、アプリ導入時には多くのアイテムを一括で登録する場面も想定されます。  
-そこで、ドラッグ＆ドロップ機能を実装し、効率的に登録作業を進められるようにしました。  
-パソコンでは既存の画像を簡単に登録でき、スマホやタブレットではデバイスのカメラを起動して画像を登録できる仕組みになっています。
+### 1. 複数画像登録とプレビュー機能
+アイテム登録や編集時に写真を最大3枚まで登録でき、さらにプレビュー表示機能を実装しました。  
+付属品は長期間保管する場合もあるため、多角的な写真で確認できるようにしています。また、プレビューにより誤登録を防ぎ、利便性を向上させました。
 
-3つ目は、使用済み／未使用の切り替えボタンを実装したことです。  
-アイテムは一度使用しても、その後も引き続き使う場合があります。  
-しかし、数カ月や数年後にアイテムが必要になった時、使用済みかどうかを忘れてしまうことがあるでしょう。  
-そこで、使用後にアイテムを削除するのではなく、使用済みに切り替えてデータを保持することで、必要な時に明確な情報を確認できるようにしました。
+### 2. デバイスを問わない操作性（ドラッグ＆ドロップ）
+導入時の大量登録を想定し、PCではドラッグ＆ドロップで、スマホではカメラ起動から簡単に画像を登録できる仕組みを整えました。
+
+### 3. ステータス管理（使用済み／未使用）
+アイテムを使い終わっても、将来また必要になる可能性があるため、削除せず「使用済み」としてデータを保持できる切り替えボタンを実装しました。
+
+### 4. セキュアな共有機能（Punditの導入）
+特定のユーザーとだけアイテム情報を共有できる機能を実装しました。認可のGem「Pundit」を導入することで、共有設定をしていない他ユーザーがURLを直接入力してもアクセスできないよう制限をかけ、データの安全性を確保しました。
