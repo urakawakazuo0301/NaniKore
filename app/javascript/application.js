@@ -2,7 +2,25 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "eye"
 
+const alertErrors = () => {
+  const errorElement = document.getElementById('errors-for-swal');
+  if (errorElement) {
+    const message = errorElement.dataset.messages;
+    Swal.fire({
+      icon: 'error',
+      title: '入力内容を確認してください',
+      text: message,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'OK'
+    });
+    errorElement.remove();
+  }
+};
+
 document.addEventListener('turbo:load', () => {
+
+  alertErrors();
+
   if (window.innerWidth <= 600) {
     document.querySelectorAll('.swiper-container').forEach((container) => {
       const id = container.className.match(/swiper-container-(\d+)/)?.[1];
@@ -23,6 +41,10 @@ document.addEventListener('turbo:load', () => {
       container.classList.add('swiper-initialized');
     });
   }
+});
+
+document.addEventListener('turbo:render', () => {
+  alertErrors();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
