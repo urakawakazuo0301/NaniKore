@@ -5,10 +5,14 @@
       <span class="return_text">トップページへ戻る</span>
       <%= link_to image_tag('return.svg', width:"30",height:"30"), root_path, class: :return_btn %>
     </button>
-
    </div>
+
+   <% if current_user.errors.any? %>
+    <div id="errors-for-swal" data-messages="<%= current_user.errors.full_messages.join(' / ') %>"></div>
+   <% end %>
+
    <div class='user-form'>
-    <%= form_with model: current_user, local: true do |f|%> 
+    <%= form_with model: current_user, local: true do |f|%>
       <div class='field'>
         <div class='field-label'>
           <%= f.label :ニックネーム%>

@@ -35,7 +35,7 @@
           <div class="nav__right"> 
             <button class="user_target">
             <span class="user_text">ユーザー編集</span>
-            <%= link_to "#{current_user.nickname}さん", "/users/#{current_user.id}/edit", class: :nav__user %>
+            <%= link_to "#{current_user.nickname_was || current_user.nickname}さん", "/users/#{current_user.id}/edit", class: :nav__user %>
             </button>
             <button class="logout_target">
             <span class="logout_text">ログアウト</span>
