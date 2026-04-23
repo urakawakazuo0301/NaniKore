@@ -54,7 +54,15 @@ https://github.com/user-attachments/assets/6d4e5d07-1f36-46a2-8218-3a5b9710647c
 2. 共有されたユーザーでログインすると、そのアイテムが自身の検索結果や一覧にも表示されるようになる
 3. Punditにより、共有を受けていない第三者がURLを直接入力してもアクセスできないよう権限管理を行っている
 
-【ここに動画：アイテム共有 を貼り付け】
+
+https://github.com/user-attachments/assets/508399f9-7d52-4480-b212-a0eae534bae6
+
+
+https://github.com/user-attachments/assets/85aed34d-d5d0-4088-b9b7-a0ad9a5dc38b
+
+
+https://github.com/user-attachments/assets/8ee326d9-7104-48dc-aaf4-a1102fa4d923
+
 
 ※ 動作確認の際は、上記「テスト用アカウント」の2つ（AとB）を使い、AからBへ共有を行うことで実際の挙動を確認いただけます。
 
