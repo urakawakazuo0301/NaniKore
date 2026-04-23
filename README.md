@@ -39,7 +39,15 @@ https://github.com/user-attachments/assets/11464bd0-b5ac-42e2-b82b-2853bc497540
 3. 《削除》ボタンをクリックすると、アイテムを削除できる（削除前にアラート表示が出る）  
 4. 《使用済み/未使用》ボタンをクリックすると、そのアイテムの検索結果一覧画面に《使用済み》か《未使用》かどうか表示できる
 
-【ここに動画：アイテム編集・切り替え を貼り付け】
+
+https://github.com/user-attachments/assets/4812bc13-1ce8-4ff4-88b0-7ff35ebd0da7
+
+
+https://github.com/user-attachments/assets/cbeb6b66-3721-4a46-be74-8716a4f80dee
+
+
+https://github.com/user-attachments/assets/6d4e5d07-1f36-46a2-8218-3a5b9710647c
+
 
 ## アイテム共有（ユーザー間共有機能）
 1. アイテム詳細画面にある共有用フォームから、共有したい相手のメールアドレス（例：`test2@test.com`）を入力し、共有を実行する
