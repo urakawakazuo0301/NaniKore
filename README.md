@@ -55,7 +55,7 @@ https://github.com/user-attachments/assets/6d4e5d07-1f36-46a2-8218-3a5b9710647c
 3. Punditにより、共有を受けていない第三者がURLを直接入力してもアクセスできないよう権限管理を行っている
 
 
-https://github.com/user-attachments/assets/508399f9-7d52-4480-b212-a0eae534bae6
+https://github.com/user-attachments/assets/7484557d-66a4-4b43-b711-0e1f67b342d4
 
 
 https://github.com/user-attachments/assets/85aed34d-d5d0-4088-b9b7-a0ad9a5dc38b
