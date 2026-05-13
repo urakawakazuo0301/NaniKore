@@ -18,7 +18,7 @@ set :rbenv_ruby, '3.2.0'
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],
-                                keys: ['/Users/nakagawayukio/Downloads/nanikore-key.pem'],
+                                keys: ['/Users/nakagawayukio/.ssh/nanikore-key.pem'],
                                 forward_agent: true
 
 # プロセス番号を記載したファイルの場所
