@@ -17,9 +17,10 @@ set :rbenv_type, :user
 set :rbenv_ruby, '3.2.0'
 
 # どの公開鍵を利用してデプロイするか
+# config/deploy.rb の該当箇所を変更
 set :ssh_options, auth_methods: ['publickey'],
-                                keys: ['/Users/nakagawayukio/.ssh/nanikore-key.pem'],
-                                forward_agent: true
+                  keys: ['/Users/kazuo/.ssh/nanikore-key.pem'],
+                  forward_agent: true
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
