@@ -107,3 +107,4 @@ gem 'rename'
 gem 'dotenv-rails'
 
 gem 'pundit'
+gem 'ruby-openai'
