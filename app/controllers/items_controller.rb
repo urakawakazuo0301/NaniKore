@@ -75,7 +75,6 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to search_items_path(session[:search_filters]), notice: 'アイテムを削除しました。'
   end
-  
 
   def delete_image
     authorize @item
@@ -84,6 +83,43 @@ class ItemsController < ApplicationController
     head :no_content
   end
 
+  def suggest_name
+    authorize Item, :create?
+    
+    blob = ActiveStorage::Blob.find(params[:blob_id])
+    image_data = Base64.strict_encode64(blob.download)
+    content_type = blob.content_type
+  
+    client = OpenAI::Client.new(access_token: Rails.application.credentials.openai[:api_key])
+  
+    response = client.chat(
+      parameters: {
+        model: "gpt-4o",
+        messages: [
+          {
+            role: "user",
+            content: [
+              {
+                type: "image_url",
+                image_url: {
+                  url: "data:#{content_type};base64,#{image_data}"
+                }
+              },
+              {
+                type: "text",
+                text: "この画像に写っている付属品・部品・道具の名前を日本語で答えてください。名前だけを一言で答えてください。"
+              }
+            ]
+          }
+        ],
+        max_tokens: 100
+      }
+    )
+  
+    suggested_name = response.dig("choices", 0, "message", "content")
+    render json: { name: suggested_name }
+  end
+  
   private
 
   def set_item

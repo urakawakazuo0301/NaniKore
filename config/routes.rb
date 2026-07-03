@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       post 'upload_image'
+      post 'suggest_name'
     end
     
     member do

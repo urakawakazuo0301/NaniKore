@@ -1,93 +1,124 @@
 <div class="contents">
-<h2>アイテム登録</h2> 
-  <div class='item-form'>
-    <%= form_with model: @item, data: { controller: "images"}, html: { multipart: true }, local: true do |f|%>
-    
-    <%= render 'shared/error_messages', model: f.object %>
+  <h2>アイテム登録</h2> 
+    <div class='item-form'>
+      <%= form_with model: @item, data: { controller: "images"}, html: { multipart: true }, local: true do |f|%>
+      
+      <%= render 'shared/error_messages', model: f.object %>
 
-    <div class='field'>
-      <div class='field-label'>
-        <%= f.label :画像（スマホの場合はカメラが起動） %>
-      </div>
-      <div class='field-input'>
-        <%= f.file_field :images, multiple: true, accept: "image/*", capture: 'camera', data: { images_target: "select", action: "change->images#selectImages" } %>
-      </div>
-      <p data-images-target="error" class="text-red-600"></p>
-    </div>
-
-    <%# 画像のドロップエリア %>
-    <div class=" mb-3 py-5 bg-gray-50 text-center border-dashed border-2" data-images-target="drop" data-action="dragover->images#dragover dragleave->images#dragleave drop->images#dropImages">
-    <i class="fa-regular fa-square-plus"></i>
-    <span>ここに画像をドラッグ&ドロップ
-    </div>
-
-    <div data-images-target="preview">
-      <% if @item.images.attached? %>
-        <% @item.images.each do |image| %>
-          <div class="image-box inline-flex mx-1 mb-5" data-controller="images" data-images-target= "image_box">
-            <div class="text-center">
-              <%= image_tag image, width: "100" %>
-              <a class="link cursor-pointer" data-action="click->images#deleteImage">削除</a>
-              <%= f.hidden_field :images, name: "item[images][]", style: "display: none", value: "#{image.blob.id}" %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class='field'>
-      <div class='field-label'>
-        <%= f.label :名前%>
-      </div>
-      <div class='field-input'>
-        <%= f.text_field :name%>
-      </div>
-    </div>
-    <div class='field'>
-      <div class='field-label'>
-        <%= f.label :カテゴリー%>
-      </div>
-      <div class='field-input'>
-        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box"}) %>
-      </div>
-    </div>
-     <div class='field'>
-      <div class='field-label'>
-        <%= f.label :数量%>
-      </div>
-      <div class='field-input'>
-        <%= f.collection_select(:quantity_id, Quantity.all, :id, :name, {}, {class:"select-box"}) %>
-      </div>
-    </div>
-    <div class='field'>
-      <div class='field-label'>
-        <%= f.label :カラー（任意）%>
-      </div>
-      <div class='field-input'>
-        <div class="radio-item">
-          <%= f.radio_button :color_id, nil, id: "color_id_none" %>
-          <%= f.label :color_id, "未選択", for: "color_id_none" %>
+      <div class='field'>
+        <div class='field-label'>
+          <%= f.label :画像（スマホの場合はカメラが起動） %>
         </div>
-        <%= f.collection_radio_buttons :color_id, Color.all, :id, :name do |b| %>
-          <div class="radio-item color-<%= b.object.id %>">
-            <%= b.radio_button %>
-            <%= b.label %>
-          </div>
+        <div class='field-input'>
+          <%= f.file_field :images, multiple: true, accept: "image/*", capture: 'camera', data: { images_target: "select", action: "change->images#selectImages" } %>
+        </div>
+        <p data-images-target="error" class="text-red-600"></p>
+      </div>
+
+      <%# 画像のドロップエリア %>
+      <div class=" mb-3 py-5 bg-gray-50 text-center border-dashed border-2" data-images-target="drop" data-action="dragover->images#dragover dragleave->images#dragleave drop->images#dropImages">
+      <i class="fa-regular fa-square-plus"></i>
+      <span>ここに画像をドラッグ&ドロップ
+      </div>
+
+      <div data-images-target="preview">
+        <% if @item.images.attached? %>
+          <% @item.images.each do |image| %>
+            <div class="image-box inline-flex mx-1 mb-5" data-controller="images" data-images-target= "image_box">
+              <div class="text-center">
+                <%= image_tag image, width: "100" %>
+                <a class="link cursor-pointer" data-action="click->images#deleteImage">削除</a>
+                <%= f.hidden_field :images, name: "item[images][]", style: "display: none", value: "#{image.blob.id}" %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
-    </div>
-    <div class='field'>
-      <div class='field-label'>
-        <%= f.label :備考欄（任意）%>
+
+      <div class='field'>
+        <div class='field-label'>
+          <%= f.label :名前%>
+        </div>
+        <div class='field-input'>
+          <%= f.text_field :name, id: "item_name" %>
+        </div>
+        <button type="button" id="suggest-name-btn" class="btn">📷 AIに名前を提案してもらう</button>
+        <p id="suggest-loading" style="display:none;">AIが考え中...</p>
       </div>
-      <div class='field-input'>
-        <%= f.text_area :notes, placeholder: "補足説明", size: "90x5"%>
+      <div class='field'>
+        <div class='field-label'>
+          <%= f.label :カテゴリー%>
+        </div>
+        <div class='field-input'>
+          <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box"}) %>
+        </div>
       </div>
+      <div class='field'>
+        <div class='field-label'>
+          <%= f.label :数量%>
+        </div>
+        <div class='field-input'>
+          <%= f.collection_select(:quantity_id, Quantity.all, :id, :name, {}, {class:"select-box"}) %>
+        </div>
+      </div>
+      <div class='field'>
+        <div class='field-label'>
+          <%= f.label :カラー（任意）%>
+        </div>
+        <div class='field-input'>
+          <div class="radio-item">
+            <%= f.radio_button :color_id, nil, id: "color_id_none" %>
+            <%= f.label :color_id, "未選択", for: "color_id_none" %>
+          </div>
+          <%= f.collection_radio_buttons :color_id, Color.all, :id, :name do |b| %>
+            <div class="radio-item color-<%= b.object.id %>">
+              <%= b.radio_button %>
+              <%= b.label %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class='field'>
+        <div class='field-label'>
+          <%= f.label :備考欄（任意）%>
+        </div>
+        <div class='field-input'>
+          <%= f.text_area :notes, placeholder: "補足説明", size: "90x5"%>
+        </div>
+      </div>
+      <div class='actions'>
+        <%= f.submit "登録", class: "btn btn-submit" %>
+      </div>
+      <script>
+        document.getElementById('suggest-name-btn').addEventListener('click', function() {
+          const previews = document.querySelectorAll('[data-images-target="preview"] input[name="item[images][]"]');
+          if (previews.length === 0) {
+            alert('先に画像をアップロードしてください');
+            return;
+          }
+          const blobId = previews[0].value;
+          document.getElementById('suggest-loading').style.display = 'block';
+          
+          fetch('/items/suggest_name', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({ blob_id: blobId })
+          })
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('item_name').value = data.name;
+            document.getElementById('suggest-loading').style.display = 'none';
+          })
+          .catch(error => {
+            alert('エラーが発生しました');
+            document.getElementById('suggest-loading').style.display = 'none';
+          });
+        });
+      </script>
+      <% end %> 
     </div>
-    <div class='actions'>
-      <%= f.submit "登録", class: "btn btn-submit" %>
-    </div>
-    <% end %> 
   </div>
- </div>
 </div>
