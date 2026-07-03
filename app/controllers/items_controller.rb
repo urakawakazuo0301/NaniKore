@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   def index
     @items = policy_scope(Item)
   end
-  
+
   def new
     @item = Item.new
     authorize @item
@@ -42,13 +42,12 @@ class ItemsController < ApplicationController
     end
   end
 
-
   def upload_image
-  if @item
-    authorize @item
-  else
-    authorize Item, :create?
-  end
+    if @item
+      authorize @item
+    else
+      authorize Item, :create?
+    end
 
     @image_blob = create_blob(params[:image])
     render json: @image_blob
@@ -62,7 +61,7 @@ class ItemsController < ApplicationController
   def mark_as_used
     authorize @item
     @item.update(used: !@item.used)
-    
+
     respond_to do |format|
       format.html { redirect_to search_items_path(session[:search_filters]), notice: 'アイテムの状態が更新されました。' }
       format.json { render json: { success: @item.used, item_id: @item.id } }
@@ -85,54 +84,81 @@ class ItemsController < ApplicationController
 
   def suggest_name
     authorize Item, :create?
-    
+
     blob = ActiveStorage::Blob.find(params[:blob_id])
     image_data = Base64.strict_encode64(blob.download)
     content_type = blob.content_type
-  
+
+    categories = Category.all.reject { |c| c.id == 1 }.map(&:name)
+    colors = Color.all.map(&:name)
+
     client = OpenAI::Client.new(access_token: Rails.application.credentials.openai[:api_key])
-  
+
     response = client.chat(
       parameters: {
-        model: "gpt-4o",
+        model: 'gpt-4o',
+        response_format: { type: 'json_object' },
         messages: [
           {
-            role: "user",
+            role: 'user',
             content: [
               {
-                type: "image_url",
+                type: 'image_url',
                 image_url: {
                   url: "data:#{content_type};base64,#{image_data}"
                 }
               },
               {
-                type: "text",
-                text: "この画像に写っている付属品・部品・道具の名前を日本語で答えてください。名前だけを一言で答えてください。"
+                type: 'text',
+                text: <<~PROMPT
+                  この画像に写っている付属品・部品・道具を分析してください。
+
+                  以下のJSON形式のみで回答してください:
+                  {
+                    "name": "アイテム名（日本語、具体的に）",
+                    "category": "カテゴリー名（下記リストから最も適切なものを1つ）",
+                    "color": "カラー名（下記リストから最も近いもの。判別できない場合はnull）",
+                    "notes": "画像内の文字・ラベル・型番・メーカー名など（読み取れるものをすべて。なければ空文字）"
+                  }
+
+                  カテゴリー（いずれか1つ）:
+                  #{categories.join('、')}
+
+                  カラー（いずれか1つ、またはnull）:
+                  #{colors.join('、')}
+                PROMPT
               }
             ]
           }
         ],
-        max_tokens: 100
+        max_tokens: 300
       }
     )
-  
-    suggested_name = response.dig("choices", 0, "message", "content")
-    render json: { name: suggested_name }
+
+    result = JSON.parse(response.dig('choices', 0, 'message', 'content'))
+
+    category = Category.all.find { |c| c.name == result['category'] }
+    color = Color.all.find { |c| c.name == result['color'] } if result['color'].present?
+
+    render json: {
+      name: result['name'],
+      category_id: category&.id,
+      color_id: color&.id,
+      notes: result['notes']
+    }
   end
-  
+
   private
 
   def set_item
-    if params[:id]
-    @item = Item.find(params[:id])
-    end
+    @item = Item.find(params[:id]) if params[:id]
   rescue ActiveRecord::RecordNotFound
     redirect_to '/', alert: 'アクセスできません。'
   end
 
-
   def item_params
-    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, :used, {images: []}).merge(images: uploaded_images)
+    params.require(:item).permit(:name, :category_id, :quantity_id, :notes, :color_id, :used,
+                                 { images: [] }).merge(images: uploaded_images)
   end
 
   def search_params
@@ -141,7 +167,7 @@ class ItemsController < ApplicationController
 
   # アップロード済み画像の検索
   def uploaded_images
-    params[:item][:images].drop(1).map{|id| ActiveStorage::Blob.find(id)} if params[:item][:images]
+    params[:item][:images].drop(1).map { |id| ActiveStorage::Blob.find(id) } if params[:item][:images]
   end
 
   # blobデータの作成
@@ -152,5 +178,4 @@ class ItemsController < ApplicationController
       content_type: file.content_type
     )
   end
-
 end
