@@ -83,7 +83,7 @@
           <%= f.label :備考欄（任意）%>
         </div>
         <div class='field-input'>
-          <%= f.text_area :notes, placeholder: "補足説明", size: "90x5"%>
+          <%= f.text_area :notes, id: "item_notes", placeholder: "補足説明", size: "90x5"%>
         </div>
       </div>
       <div class='actions'>
@@ -121,7 +121,9 @@
               const colorRadio = document.getElementById(`item_color_id_${data.color_id}`);
               if (colorRadio) colorRadio.checked = true;
             }
-
+            if (data.notes) {
+              document.getElementById('item_notes').value = data.notes;
+            }
             document.getElementById('suggest-loading').style.display = 'none';
           })
           .catch(error => {
