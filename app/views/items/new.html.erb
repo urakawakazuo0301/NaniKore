@@ -114,6 +114,13 @@
             if (data.category_id) {
               document.getElementById('item_category_id').value = data.category_id;
             }
+            if (data.color_id) {
+              const noneRadio = document.getElementById('color_id_none');
+              if (noneRadio) noneRadio.checked = false;
+
+              const colorRadio = document.getElementById(`item_color_id_${data.color_id}`);
+              if (colorRadio) colorRadio.checked = true;
+            }
 
             document.getElementById('suggest-loading').style.display = 'none';
           })
