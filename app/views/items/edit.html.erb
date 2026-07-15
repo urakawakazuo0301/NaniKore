@@ -39,7 +39,7 @@
           <%= f.label :名前 %>
         </div>
         <div class="field-input">
-          <%= f.text_field :name %>
+          <%= f.text_field :name, id: "item_name" %>
         </div>
         <button type="button" id="suggest-name-btn">📷 AIに提案してもらう</button>
         <p id="suggest-loading" style="display:none;">AIが考え中...</p>
@@ -86,7 +86,7 @@
           <%= f.label :備考欄（任意） %>
         </div>
         <div class="field-input">
-          <%= f.text_area :notes, placeholder: "補足説明", size: "90x5" %>
+          <%= f.text_area :notes, id: "item_notes", placeholder: "補足説明", size: "90x5" %>
         </div>
       </div>
 
