@@ -92,7 +92,7 @@ class ItemsController < ApplicationController
     categories = Category.all.reject { |c| c.id == 1 }.map(&:name)
     colors = Color.all.map(&:name)
 
-    client = OpenAI::Client.new(access_token: Rails.application.credentials.openai[:api_key])
+    client = ::OpenAI::Client.new(access_token: Rails.application.credentials.openai[:api_key])
 
     response = client.chat(
       parameters: {
