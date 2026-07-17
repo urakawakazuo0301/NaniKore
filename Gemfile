@@ -108,4 +108,4 @@ gem 'dotenv-rails'
 
 gem 'pundit'
 
-gem 'ruby-openai', require: 'ruby/openai'
+gem 'ruby-openai', require: 'openai'
